@@ -1,6 +1,6 @@
 import AuthService from "../../middleware/services/AuthService";
 
-export const initialStore = () => ({
+export const initialState = () => ({
   isSigned: false,
   nickname: '',
   login: '',
@@ -23,8 +23,8 @@ export const actions = {
           res({ error: false, data: user });
         })
         .catch(err => {
-          res({ error: false, data: err });
+          res({ error: true, data: err });
         });
     });
   },
-},
+};

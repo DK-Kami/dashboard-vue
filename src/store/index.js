@@ -11,12 +11,21 @@ Vue.use(Vuex);
 const initialState = () => ({
   rules: {
     required: v => Array.isArray(v)
-      ? !!v.length || "Обязательно к заполнению."
-      : !!v || "Обязательно к заполнению.",
+      ? !!v.length || "Обязательно к заполнению"
+      : !!v || "Обязательно к заполнению",
     email: value => {
       const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return pattern.test(value) || 'Неправильный e-mail.'
+      return pattern.test(value) || 'Некорректная электронная почта'
     },
+    min: type => {
+      switch(type) {
+        case 'name':
+          return v => v.length > 3 || 'Имя должно содержать больше символов';
+
+        case 'password':
+          return v => v.length > 3 || 'Пароль должен быть больше 8 символов';
+      }
+    }
   },
 
   perPages: {
