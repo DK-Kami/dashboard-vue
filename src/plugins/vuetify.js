@@ -8,21 +8,21 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
-        primary: '#ee44aa',
-        secondary: '#424242',
-        accent: '#82B1FF',
-        error: '#FF5252',
-        info: '#2196F3',
-        success: '#4CAF50',
-        warning: '#FFC107'
+        primary: '#142748',
+        accent: '#7030a0',
+        secondary: '#00b0f0',
+        success: '#92d050',
+        warning: '#ffc000',
+        error: '#f44336',
+        info: '#009688',
       },
     },
   },
-    lang: {
-      locales: { ru },
-      current: 'ru',
-    },
+  lang: {
+    locales: { ru },
+    current: 'ru',
+  },
   icons: {
-    iconfont: 'md',
+    iconfont: 'fa4',
   },
 });
