@@ -1,14 +1,87 @@
 <template>
   <v-navigation-drawer
+    color="primary"
     class="drawer"
     permanent
-    app
     dark
+    app
   >
-    <v-list>
+    <v-list two-line>
       <v-list-item>
-        baka
+        <v-list-item-avatar>
+          <v-avatar color="accent">{{ avatar }}</v-avatar>
+        </v-list-item-avatar>
+
+        <v-list-item-content>
+          <v-list-item-title>
+            {{ nickname }}
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            {{ email }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
       </v-list-item>
     </v-list>
+    <v-divider />
+
+    <v-list avatar nav>
+      <v-list-item
+        v-for="item in menu"
+        :key="item.icon"
+        class="cursor--pointer"
+        ripple
+      >
+        <v-list-item-avatar>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-avatar>
+
+        {{ item.text }}
+      </v-list-item>
+    </v-list>
+
+    <template v-slot:append>
+      <div class="pa-2">
+        <v-btn
+          color="accent"
+          outlined
+          block
+          @click="logout"
+        >Выход</v-btn>
+      </div>
+    </template>
   </v-navigation-drawer>
 </template>
+
+<script>
+const menu = [
+  { icon: 'account_circle', text: 'Профиль' },
+  { icon: 'dashboard', text: 'Дашбоард' },
+  { icon: 'settings', text: 'Настройки' },
+];
+
+export default {
+  name: 'TheMenu',
+  data: () => ({
+    menu,
+  }),
+  computed: {
+    email() {
+      return this.$store.getters['auth/getEmail'];
+    },
+    nickname() {
+      return this.$store.getters['auth/getNickname'];
+    },
+    avatar() {
+      return this.nickname.charAt(0);
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+      setTimeout(() => {
+        this.$router.replace({ name: 'login' });
+      }, 0);
+    },
+  },
+};
+</script>
