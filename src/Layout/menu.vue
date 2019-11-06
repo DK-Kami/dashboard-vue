@@ -1,0 +1,14 @@
+<template>
+  <v-navigation-drawer
+    class="drawer"
+    permanent
+    app
+    dark
+  >
+    <v-list>
+      <v-list-item>
+        baka
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+</template>
