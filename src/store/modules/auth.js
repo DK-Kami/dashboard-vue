@@ -28,3 +28,9 @@ export const actions = {
     });
   },
 };
+
+export const getters = {
+  getNickname: state => state.nickname,
+  isSigned: state => state.isSigned,
+  getEmail: state => state.email,
+}

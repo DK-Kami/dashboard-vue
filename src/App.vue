@@ -1,17 +1,24 @@
 <template>
   <v-app>
-    <login-page />
+    <login-page v-if="isLogin" />
+
+    <default-layout v-else />
   </v-app>
 </template>
 
 <script>
 import LoginPage from './views/LoginPage';
+import DefaultLayout from './Layout';
 
 export default {
   name: 'App',
-  components: { LoginPage },
+  components: {
+    DefaultLayout,
+    LoginPage,
+  },
   computed: {
     isLogin() {
+      console.info({...this.$route});
       return this.$route.name === 'login' || this.$route.name === 'register';
     },
   },
