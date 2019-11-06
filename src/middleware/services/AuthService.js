@@ -14,4 +14,7 @@ export default {
         .catch(err => rej(err));
     });
   },
+  logout() {
+    this.apiClient.logout();
+  }
 };

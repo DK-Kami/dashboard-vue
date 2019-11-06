@@ -45,7 +45,7 @@ class WebClient {
     this.axios.defaults.baseURL = this.baseURL + 'api';
   }
   logout() {
-    this.axios.defaults.headers.common['Authorization'] = '';
+    delete this.axios.defaults.headers.common['Authorization'] ;
     this.axios.defaults.baseURL = this.baseURL;
   }
 

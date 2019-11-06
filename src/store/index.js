@@ -5,6 +5,7 @@ import services from '@/middleware';
 import modules from './modules';
 
 import initialModules from './initialModules';
+import AuthService from '../middleware/services/AuthService';
 
 Vue.use(Vuex);
 
@@ -41,11 +42,12 @@ export default new Vuex.Store({
     getPerPage: state => state.perPages,
   },
   actions: {
-    unsetUserData({ commit }) {
+    logout({ commit }) {
       Object.keys(modules).forEach(m => {
         commit(`${m}/UNSET_DATA`)
       });
       commit('UNSET_DATA');
+      AuthService.logout();
     },
   },
   mutations: {

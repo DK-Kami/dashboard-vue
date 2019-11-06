@@ -3,13 +3,13 @@ import AuthService from "../../middleware/services/AuthService";
 export const initialState = () => ({
   isSigned: false,
   nickname: '',
-  login: '',
+  email: '',
 });
 
 export const mutations = {
-  LOGIN: (state, { nickname, login }) => {
+  LOGIN: (state, { nickname, email }) => {
     state.nickname = nickname;
-    state.login = login;
+    state.email = email;
     state.isSigned = true;
   },
 };
