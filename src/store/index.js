@@ -36,7 +36,7 @@ export default new Vuex.Store({
       Object.keys(modules).forEach(m => {
         commit(`${m}/UNSET_DATA`)
       });
-      commit('UNSET_DATA')
+      commit('UNSET_DATA');
     },
   },
   mutations: {
