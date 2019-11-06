@@ -37,6 +37,10 @@ const router = new Router({
       path: '/settings',
       component: () => import('@/views/Settings'),
     },
+    {
+      path: '/*',
+      redirect: '/dashboard',
+    },
   ],
 });
 

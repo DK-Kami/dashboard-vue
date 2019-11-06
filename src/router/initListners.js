@@ -4,6 +4,6 @@ export default function initListners(router, ...listners) {
       router[listner.type](listner.listner(store));
     });
   
-    return router
+    return router;
   }
 };
