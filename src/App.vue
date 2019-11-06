@@ -12,22 +12,13 @@ export default {
   components: { LoginPage },
   computed: {
     isLogin() {
-      return this.$route.name === 'login';
+      return this.$route.name === 'login' || this.$route.name === 'register';
     },
   },
 };
 </script>
 
 <style lang="stylus">
-#app
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  margin-top 60px
-
-  
 .cursor--pointer {
   cursor: pointer;
 }
