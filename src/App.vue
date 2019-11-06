@@ -18,7 +18,6 @@ export default {
   },
   computed: {
     isLogin() {
-      console.info({...this.$route});
       return this.$route.name === 'login' || this.$route.name === 'register';
     },
   },
