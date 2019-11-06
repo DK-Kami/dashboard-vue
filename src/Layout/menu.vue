@@ -28,6 +28,7 @@
       <v-list-item
         v-for="item in menu"
         :key="item.icon"
+        :to="item.to"
         class="cursor--pointer"
         ripple
       >
@@ -54,9 +55,9 @@
 
 <script>
 const menu = [
-  { icon: 'account_circle', text: 'Профиль' },
-  { icon: 'dashboard', text: 'Дашбоард' },
-  { icon: 'settings', text: 'Настройки' },
+  { icon: 'account_circle', text: 'Профиль', to: '/profile' },
+  { icon: 'dashboard', text: 'Дашбоард', to: '/dashboard' },
+  { icon: 'settings', text: 'Настройки', to: '/settings' },
 ];
 
 export default {
