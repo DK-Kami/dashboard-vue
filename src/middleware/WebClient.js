@@ -4,6 +4,8 @@ import router from '@/router';
 
 class WebClient {
   constructor(baseURL) {
+    this.baseURL = baseURL;
+
     this.axios = axios.create({
       baseURL,
       headers: {
@@ -33,61 +35,41 @@ class WebClient {
       if (error.response.status === 401 || error.response.status === 403) {
         store.dispatch('unsetUserData');
         router(store).push({ name: "login" });
-        return;
       }
-      // if (error.response.status === 400 || error.response.status === 500) {
-      //   console.log("AJAX error...");
-      // }
-      return Promise.reject(error.response.data);
+      return Promise.reject(error.response.data.error);
     });
+  }
+
+  login(token) {
+    this.axios.defaults.headers.common['Authorization'] = token;
+    this.axios.defaults.baseURL = this.baseURL + 'api';
+  }
+  logout() {
+    this.axios.defaults.headers.common['Authorization'] = '';
+    this.axios.defaults.baseURL = this.baseURL;
   }
 
   get(url, params) {
-    return this.axios.get('', {
-      params: {
-        cmd: url,
-        ...params,
-        origin: 'gallery.vdooh.com',
-      },
+    return this.axios.get(url, {
+      params,
     });
   }
   post(url, data, params) {
-    return this.axios.post('', data, {
-      params: {
-        cmd: url,
-        ...params,
-        origin: 'gallery.vdooh.com',
-      },
+    return this.axios.post(url, data, {
+      params,
     });
   }
-  request(url, config) {
-    return this.axios.request({
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      withCredentials: true,
-      method: 'GET',
-      url,
-      ...config
+  put(url, data, params) {
+    return this.axios.put(url, data, {
+      params,
     });
   }
-  // get(url, params) {
-  //   return this.axios.get(url, {
-  //     params,
-  //   })
-  // }
-  // post(url, data, params) {
-  //   return this.axios.post(url, data, {
-  //     params,
-  //   })
-  // }
-  // put(url, data, params) {
-  //   return this.axios.post(url, data, {
-  //     params,
-  //   })
-  // }
+  delete(url, params) {
+    return this.axios.delete(url, {
+      params,
+    });
+  }
 };
 
-// const url = 'http://127.0.0.1:3000';
-const url = 'https://test.vdooh.com/ui/hujax.ajax';
+const url = 'http://localhost:5000/';
 export default new WebClient(url);
