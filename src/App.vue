@@ -38,7 +38,7 @@ export default {
 .v-btn-toggle--selected,
 .v-stepper__header
 .v-card.v-card--flat {
-  box-shadow: 0 20px 20px rgba(48, 52, 59, 0.07) !important;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.07) !important;
 }
 
 

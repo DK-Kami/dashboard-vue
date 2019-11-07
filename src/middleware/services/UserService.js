@@ -16,5 +16,10 @@ export default {
   },
   logout() {
     this.apiClient.logout();
+  },
+
+  async loadProfile() {
+    const response = (await this.apiClient.get('/user/profile')).data
+    return response;
   }
 };

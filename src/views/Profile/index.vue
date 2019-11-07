@@ -1,5 +1,32 @@
 <template>
-  <v-card>
-    profile
-  </v-card>
+  <v-layout justify-space-between>
+    <v-flex xs5>
+      <main-user-data />
+    </v-flex>
+
+    <v-flex xs5>
+      <accounts-user-data />
+    </v-flex>
+  </v-layout>
 </template>
+
+<script>
+import MainUserData from './MainUserData';
+import AccountsUserData from './AccountsUserData';
+
+export default {
+  name: 'ProfilePage',
+  components: {
+    AccountsUserData,
+    MainUserData,
+  },
+  created() {
+    this.loadProfile();
+  },
+  methods: {
+    async loadProfile() {
+      this.$store.dispatch('user/loadProfile');
+    },
+  },
+};
+</script>

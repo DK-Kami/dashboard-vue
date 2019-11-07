@@ -5,7 +5,7 @@ import services from '@/middleware';
 import modules from './modules';
 
 import initialModules from './initialModules';
-import AuthService from '../middleware/services/AuthService';
+import UserService from '../middleware/services/UserService';
 
 Vue.use(Vuex);
 
@@ -47,7 +47,7 @@ export default new Vuex.Store({
         commit(`${m}/UNSET_DATA`)
       });
       commit('UNSET_DATA');
-      AuthService.logout();
+      UserService.logout();
     },
   },
   mutations: {
