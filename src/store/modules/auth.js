@@ -3,7 +3,7 @@ import UserService from "../../middleware/services/UserService";
 export const initialState = () => ({
   isSigned: false,
   nickname: '',
-  tocken: '',
+  token: '',
 });
 
 export const mutations = {

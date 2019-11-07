@@ -33,7 +33,7 @@ class WebClient {
       }
 
       if (error.response.status === 401 || error.response.status === 403) {
-        store.dispatch('unsetUserData');
+        store.dispatch('logout');
         router(store).push({ name: "login" });
       }
       return Promise.reject(error.response.data.error);
@@ -41,7 +41,7 @@ class WebClient {
   }
 
   login(token) {
-    this.axios.defaults.headers.common['Authorization'] = token;
+    this.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     this.axios.defaults.baseURL = this.baseURL + 'api';
   }
   logout() {
