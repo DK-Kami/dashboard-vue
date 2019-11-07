@@ -9,15 +9,15 @@
     <v-list two-line>
       <v-list-item>
         <v-list-item-avatar>
-          <v-avatar color="accent">{{ avatar }}</v-avatar>
+          <v-avatar color="accent">{{ user.avatar }}</v-avatar>
         </v-list-item-avatar>
 
         <v-list-item-content>
           <v-list-item-title>
-            {{ nickname }}
+            {{ user.nickname }}
           </v-list-item-title>
           <v-list-item-subtitle>
-            {{ email }}
+            {{ user.email }}
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
@@ -66,14 +66,8 @@ export default {
     menu,
   }),
   computed: {
-    email() {
-      return this.$store.getters['auth/getEmail'];
-    },
-    nickname() {
-      return this.$store.getters['auth/getNickname'];
-    },
-    avatar() {
-      return this.nickname.charAt(0);
+    user() {
+      return this.$store.getters['auth/getUser'];
     },
   },
   methods: {
