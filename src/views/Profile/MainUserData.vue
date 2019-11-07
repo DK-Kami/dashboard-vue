@@ -14,6 +14,7 @@
             icon="edit"
             lighten="1"
             top
+            @action="editProfile"
           />
         </v-flex>
 
@@ -23,11 +24,17 @@
       </v-layout>
     </v-card-title>
 
-    <template class="pa-8">
-      <v-card-text>
-        <v-list>
-          <v-list-item v-for="(item, index) in info" :key="index">
-            {{ item }}
+    <template class="py-8">
+      <v-card-text class="px-12">
+        <v-list class="px-8">
+          <v-list-item v-for="item in info" :key="item._id">
+            <v-list-item-title>
+              {{ item.name }}
+            </v-list-item-title>
+
+            <v-list-item-action>
+              {{ item.value }}
+            </v-list-item-action>
           </v-list-item>
         </v-list>
       </v-card-text>
@@ -41,16 +48,31 @@ import TooltipButton from '@/components/TooltipButton';
 export default {
   name: 'MainUserData',
   components: { TooltipButton },
+  data: () => ({
+    isEdit: false,
+  }),
   computed: {
     user() {
       return this.$store.getters['auth/getUser'];
     },
     info() {
-      return this.$store.getters['user/getProfileInfo'];
+      return this.$store.getters['user/getUserInfo'];
+    },
+    infoTypes() {
+      return this.$store.getters['types/getInfoTypes'];
     },
   },
   methods: {
-    /// here
+    async loadInfoTypes() {
+      this.$store.dispatch('types/loadInfoTypes');
+    },
+
+    editProfile() {
+      if (!this.infoTypes.length) {
+        this.loadInfoTypes();
+      }
+      this.isEdit = true;
+    }
   },
 };
 </script>

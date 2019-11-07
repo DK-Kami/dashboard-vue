@@ -12,7 +12,7 @@ export const mutations = {
 
 export const actions = {
   async loadProfile({ commit }) {
-    const [contacts, info] = await UserService.loadProfile();
+    const { contacts, info } = await UserService.loadProfile();
 
     commit('SET_CONTACTS', contacts);
     commit('SET_USER_INFO', info);

@@ -19,7 +19,7 @@ export default {
   },
 
   async loadProfile() {
-    const response = (await this.apiClient.get('/user/profile')).data
+    const response = (await this.apiClient.get('/user/profile')).data.user;
     return response;
   }
 };
