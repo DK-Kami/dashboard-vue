@@ -13,6 +13,10 @@ export const mutations = {
     state.token = token;
     state.isSigned = true;
   },
+  CHANGE_PROFILE_DATA: (state, { nickname, email }) => {
+    state.nickname = nickname;
+    state.email = email;
+  },
 };
 
 export const actions = {
@@ -27,6 +31,9 @@ export const actions = {
           res({ error: true, data: err });
         });
     });
+  },
+  changeProfileData({ commit }, user) {
+    commit('CHANGE_PROFILE_DATA', user);
   },
 };
 

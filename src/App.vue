@@ -9,12 +9,15 @@
 <script>
 import LoginPage from './views/LoginPage';
 import DefaultLayout from './Layout';
-
+import axios from 'axios';
 export default {
   name: 'App',
   components: {
     DefaultLayout,
     LoginPage,
+  },
+  created() {
+    axios.get('http://localhost:5000/api/github/login/');
   },
   computed: {
     isLogin() {
@@ -27,6 +30,9 @@ export default {
 <style lang="stylus">
 .cursor--pointer {
   cursor: pointer;
+}
+.no-select {
+  user-select none
 }
 
 .custom-elevation,

@@ -1,19 +1,19 @@
 import TypeServices from "../../middleware/services/TypeService";
 
 export const initialState = () => ({
-  contactTypes: [],
+  accounts: [],
   infoTypes: [],
 });
 
 export const mutations = {
-  SET_CONTACT_TYPES: (state, types) => state.contactTypes = types,
+  SET_ACCOUNTS: (state, types) => state.accounts = types,
   SET_INFO_TYPES: (state, types) => state.infoTypes = types,
 };
 
 export const actions = {
-  async loadContactTypes({ commit }) {
-    const types = (await TypeServices.loadContactTypes()).data;
-    commit('SET_CONTACT_TYPES', types);
+  async loadaccounts({ commit }) {
+    const types = (await TypeServices.loadaccounts()).data;
+    commit('SET_ACCOUNTS', types);
   },
   async loadInfoTypes({ commit }) {
     const types = (await TypeServices.loadInfoTypes()).data;
@@ -22,6 +22,6 @@ export const actions = {
 };
 
 export const getters = {
-  getContactTypes: state => state.contactTypes,
+  getaccounts: state => state.accounts,
   getInfoTypes: state => state.infoTypes,
 };

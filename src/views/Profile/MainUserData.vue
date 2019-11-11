@@ -1,18 +1,21 @@
 <template>
   <v-card>
+    <edit-dialog v-model="editDialog" />
     <v-card-title>
       <v-layout align-center column>
         <v-avatar
-          class="white--text mt-n12 elevation-10"
+          class="white--text mt-n12 elevation-10 cursor--pointer no-select"
           color="accent"
           size="80"
-        >{{ user.avatar }}</v-avatar>
+        >
+          <div>{{ user.avatar }}</div>
+        </v-avatar>
 
         <v-tooltip top>
           <template #activator="{ on }">
             <div
               class="headline mt-4 ml-6 cursor--pointer"
-              @click="editProfile"
+              @click="editDialog = true"
               v-on="on"
             >
               {{ user.nickname }}
@@ -46,12 +49,16 @@
 
 <script>
 import TooltipButton from '@/components/TooltipButton';
+import EditDialog from './EditDialog';
 
 export default {
   name: 'MainUserData',
-  components: { TooltipButton },
+  components: {
+    TooltipButton,
+    EditDialog,
+  },
   data: () => ({
-    isEdit: false,
+    editDialog: false,
   }),
   computed: {
     user() {
@@ -60,21 +67,6 @@ export default {
     info() {
       return this.$store.getters['user/getUserInfo'];
     },
-    infoTypes() {
-      return this.$store.getters['types/getInfoTypes'];
-    },
-  },
-  methods: {
-    async loadInfoTypes() {
-      this.$store.dispatch('types/loadInfoTypes');
-    },
-
-    editProfile() {
-      if (!this.infoTypes.length) {
-        this.loadInfoTypes();
-      }
-      this.isEdit = true;
-    }
   },
 };
 </script>

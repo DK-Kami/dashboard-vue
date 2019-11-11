@@ -40,20 +40,20 @@ export default {
   }),
   computed: {
     contactsTypes() {
-      return this.$store.getters['types/getContactTypes'];
+      return this.$store.getters['types/getaccounts'];
     },
     contacts() {
       return this.$store.getters['user/getUserContacts'];
     },
   },
   methods:{
-    async loadContactTypes() {
-      this.$store.dispatch('types/loadContactTypes');
+    async loadaccounts() {
+      this.$store.dispatch('types/loadaccounts');
     },
 
     editProfile() {
       if (!this.contactsTypes.length) {
-        this.loadContactTypes();
+        this.loadaccounts();
       }
       this.isEdit = true;
     },
