@@ -3,11 +3,9 @@
     <the-menu />
 
     <v-slide-y-transition>
-      <v-container fluid>
+      <v-container fluid class="pa-0">
         <v-layout fill-height justify-center>
-          <v-flex xs12 xl10 class="px-5 pt-5 mt-5">
-            <router-view />
-          </v-flex>
+          <router-view />
         </v-layout>
       </v-container>
     </v-slide-y-transition>
