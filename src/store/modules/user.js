@@ -10,6 +10,8 @@ export const initialState = () => ({
   },
   accounts: [],
   info: [],
+
+  url: '',
 });
 
 export const mutations = {
@@ -28,6 +30,8 @@ export const mutations = {
     accounts.push(account);
     state.accounts = accounts;
   },
+
+  SET_URL: (state, url) => state.url = url,
 };
 
 export const actions = {
@@ -103,10 +107,16 @@ export const actions = {
         });
     });
   },
+
+  async loadUrl({ commit }) {
+    commit('SET_URL', 'https://github/KamiMeow');
+  }
 };
 
 export const getters = {
   getUserAccounts: state => state.accounts,
   getUserForEdit: state => state.userEdit,
   getUserInfo: state => state.info,
+
+  getUrl: state => state.url,
 };
