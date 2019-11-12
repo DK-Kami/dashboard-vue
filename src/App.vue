@@ -31,6 +31,9 @@ export default {
 .cursor--pointer {
   cursor: pointer;
 }
+.cursor--grab {
+  cursor: grab;
+}
 .no-select {
   user-select none
 }
