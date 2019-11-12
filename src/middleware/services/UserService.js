@@ -21,8 +21,11 @@ export default {
   saveProfile(user) {
     return this.apiClient.put('/user/profile', user);
   },
+  setCurrentUserAccount(data) {
+    return this.apiClient.post('/user/accounts/add', data);
+  },
   async loadProfile() {
     const response = (await this.apiClient.get('/user/profile')).data.user;
     return response;
-  }
+  },
 };

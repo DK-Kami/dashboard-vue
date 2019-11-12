@@ -2,7 +2,7 @@ export default {
   loadInfoTypes() {
     return this.apiClient.get('/info-types');
   },
-  loadaccounts() {
-    return this.apiClient.get('/contact-types');
+  loadAccounts() {
+    return this.apiClient.get('/accounts');
   },
 };

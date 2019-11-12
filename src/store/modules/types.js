@@ -6,14 +6,14 @@ export const initialState = () => ({
 });
 
 export const mutations = {
-  SET_ACCOUNTS: (state, types) => state.accounts = types,
+  SET_ACCOUNTS: (state, accounts) => state.accounts = accounts,
   SET_INFO_TYPES: (state, types) => state.infoTypes = types,
 };
 
 export const actions = {
-  async loadaccounts({ commit }) {
-    const types = (await TypeServices.loadaccounts()).data;
-    commit('SET_ACCOUNTS', types);
+  async loadAccounts({ commit }) {
+    const accounts = (await TypeServices.loadAccounts()).data;
+    commit('SET_ACCOUNTS', accounts);
   },
   async loadInfoTypes({ commit }) {
     const types = (await TypeServices.loadInfoTypes()).data;
@@ -22,6 +22,6 @@ export const actions = {
 };
 
 export const getters = {
-  getaccounts: state => state.accounts,
+  getAccounts: state => state.accounts,
   getInfoTypes: state => state.infoTypes,
 };

@@ -7,8 +7,8 @@
             <v-tooltip top>
               <template #activator="{ on }">
                 <v-avatar
-                  color="accent"
-                  size="75"
+                  color="accent elevation-10 cursor--pointer"
+                  size="90"
                   v-on="on"
                 >
                   <v-icon class="white--text">add</v-icon>
@@ -78,11 +78,11 @@
 </template>
 
 <script>
+import dialog from '@/plugins/mixins/dialog';
+
 export default {
   name: 'EditDialog',
-  props: {
-    value: Boolean,
-  },
+  mixins: [dialog],
   created() {
     this.loadInfoTypes();
   },
@@ -91,15 +91,6 @@ export default {
     loading: false,
   }),
   computed: {
-    dialog: {
-      get() {
-        return this.value;
-      },
-      set(newVal) {
-        this.$emit('input', newVal);
-      },
-    },
-
     user() {
       return this.$store.getters['user/getUserForEdit'];
     },
@@ -127,7 +118,9 @@ export default {
     },
     async saveChanges() {
       this.loading = true;
-      const { error } = this.$store.dispatch('user/saveProfile', this.currentInfo);
+      const { error } = this.$store.dispatch('user/saveProfile', {
+        info: this.currentInfo,
+      });
       if (!error) this.dialog = false;
       this.loading = false;
     },
