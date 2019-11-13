@@ -6,7 +6,7 @@
         hint="Эта ссылка на вашу статистика в режиме просмотра. Вы можете скопировать эту ссылку и поделиться ей"
         label="Ссылка на вашу статистику"
         class="cursor--pointer"
-        :loading="loading"
+        :loading="loading || loadinglink"
         persistent-hint
         rounded
         filled
@@ -53,16 +53,19 @@ export default {
   props: {
     loading: Boolean,
   },
+  data: () => ({
+    loadinglink: false,
+  }),
   computed: {
     url() {
-      return this.$store.getters['statistic/getUrl'];
+      return this.$store.getters['auth/getUrl'];
     },
   },
   methods: {
     async regenerateUrl() {
-      this.loading = true;
-      await this.$store.dispatch('statistic/regenerateUrl');
-      this.loading = false;
+      this.loadinglink = true;
+      await this.$store.dispatch('auth/regenerateUrl');
+      this.loadinglink = false;
     },
 
     async copyToClipboard() {

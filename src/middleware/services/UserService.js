@@ -28,4 +28,7 @@ export default {
     const response = (await this.apiClient.get('/user/profile')).data.user;
     return response;
   },
+  regenerateUrl() {
+    return this.apiClient.get('/user/link/regenerate');
+  },
 };

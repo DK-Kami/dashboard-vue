@@ -3,20 +3,24 @@ import UserService from "../../middleware/services/UserService";
 export const initialState = () => ({
   isSigned: false,
   nickname: '',
+  email: '',
   token: '',
+  url: '',
 });
 
 export const mutations = {
-  LOGIN: (state, { nickname, email, token }) => {
+  LOGIN: (state, { nickname, email, token, url }) => {
     state.nickname = nickname;
     state.email = email;
     state.token = token;
+    state.url = url;
     state.isSigned = true;
   },
   CHANGE_PROFILE_DATA: (state, { nickname, email }) => {
     state.nickname = nickname;
     state.email = email;
   },
+  SET_URL: (state, url) => state.url = url,
 };
 
 export const actions = {
@@ -35,6 +39,15 @@ export const actions = {
   changeProfileData({ commit }, user) {
     commit('CHANGE_PROFILE_DATA', user);
   },
+  async regenerateUrl({ commit, dispatch }) {
+    const { url } = (await UserService.regenerateUrl()).data.user;
+    commit('SET_URL', url);
+
+    dispatch('notification/set', {
+      message: 'Новая ссылка была сгенерирована',
+      type: 'success',
+    }, { root: true })
+  },
 };
 
 export const getters = {
@@ -49,4 +62,5 @@ export const getters = {
     avatar: getters.getAvatar,
     email: getters.getEmail,
   }),
-}
+  getUrl: state => state.url,
+};
