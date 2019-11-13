@@ -3,7 +3,7 @@
     <v-flex grow>
       <v-layout column fill-height>
         <v-flex shrink>
-          <link-input />
+          <link-input :loading="loading" />
         </v-flex>
 
         <v-flex grow>
@@ -13,7 +13,7 @@
     </v-flex>
 
     <v-flex xs4>
-      <tool-panel  />
+      <tool-panel :loading="loading" />
     </v-flex>
   </v-layout>
 </template>
@@ -30,5 +30,18 @@ export default {
     LinkInput,
     ToolPanel,
   },
+  created() {
+    this.loadStatistic();
+  },
+  data: () => ({
+    loading: true,
+  }),
+  methods: {
+    async loadStatistic() {
+      this.loading = false;
+      await this.$store.dispatch('statistic/loadStatistic');
+      this.loading = true;
+    }
+  }
 };
 </script>

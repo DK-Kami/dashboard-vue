@@ -1,6 +1,19 @@
 <template>
   <v-layout fill-height>
-    <v-flex xs12>
+    <v-flex v-if="loading">
+      <v-card style="height: 100%">
+        <v-layout fill-height align-center justify-center>
+          <v-progress-circular
+            color="accent"
+            size="200"
+            width="5"
+            indeterminate
+          />
+        </v-layout>
+      </v-card>
+    </v-flex>
+
+    <v-flex xs12 v-else>
       <v-card style="height: 100%">
         <v-expansion-panels
           v-model="panel"
@@ -8,7 +21,7 @@
           multiple
         >
           <v-expansion-panel
-            v-for="type in types"
+            v-for="type in statistic"
             :key="type.name"
           >
             <v-expansion-panel-header class="title">{{ type.title }}</v-expansion-panel-header>
@@ -38,38 +51,21 @@
 <script>
 import Counter from '@/components/DashboardTools/Counter';
 
-const types = [
-  {
-    title: 'Статистические данные',
-    component: 'Counter',
-    name: 'Counter',
-    data: [{
-      title: 'Baka',
-      value: 2,
-    },
-    {
-      title: 'Baka',
-      value: 2,
-    },
-    {
-      title: 'Baka',
-      value: 2,
-    },
-    {
-      title: 'Baka',
-      value: 2,
-    }],
-  },
-];
-
 export default {
   name: 'ToolPanel',
   components: {
     Counter,
   },
+  props: {
+    loading: Boolean,
+  },
   data: () => ({
     panel: [0],
-    types,
   }),
+  computed: {
+    statistic() {
+      return this.$store.getters['statistic/getStatistics'];
+    },
+  },
 };
 </script>

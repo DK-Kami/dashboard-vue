@@ -1,7 +1,29 @@
 import StatisticService from "../../middleware/services/StatisticService";
 
 export const initialState = () => ({
-  statistic: [],
+  statistic: [
+    {
+      title: 'Статистические данные',
+      component: 'Counter',
+      name: 'Counter',
+      data: [{
+        title: 'Baka',
+        value: 2,
+      },
+      {
+        title: 'Baka',
+        value: 2,
+      },
+      {
+        title: 'Baka',
+        value: 2,
+      },
+      {
+        title: 'Baka',
+        value: 2,
+      }],
+    },
+  ],
   url: '',
 });
 
