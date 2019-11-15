@@ -38,9 +38,9 @@ export default {
   }),
   methods: {
     async loadStatistic() {
-      this.loading = false;
-      await this.$store.dispatch('statistic/loadStatistic');
       this.loading = true;
+      await this.$store.dispatch('statistic/loadStatistic');
+      this.loading = false;
     }
   }
 };
