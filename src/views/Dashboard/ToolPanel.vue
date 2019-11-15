@@ -63,12 +63,14 @@
 </template>
 
 <script>
+import ChartWithData from '@/components/DashboardTools/ChartWithData';
 import Counter from '@/components/DashboardTools/Counter';
 import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'ToolPanel',
   components: {
+    ChartWithData,
     TooltipButton,
     Counter,
   },
@@ -86,7 +88,7 @@ export default {
   methods: {
     refreshStatistic() {
       this.$emit('set-loading', true);
-      this.$store.dispatch('statistic/refresh');
+      this.$store.dispatch('statistic/refreshStatistic');
       this.$emit('set-loading', false);
     },
   },

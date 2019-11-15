@@ -3,6 +3,6 @@ export default {
     return this.apiClient.get('statistic/');
   },
   refreshStatistic() {
-    return this.apiClient.get('statistic/');
+    return this.apiClient.get('statistic/refresh');
   }
 };

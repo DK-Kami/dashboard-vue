@@ -2,32 +2,30 @@ import StatisticService from "../../middleware/services/StatisticService";
 
 export const initialState = () => ({
   statistic: [
-    // {
-    //   title: 'Статистические данные',
-    //   component: 'Counter',
-    //   name: 'Counter',
-    //   data: [{
-    //     title: 'Baka',
-    //     value: 2,
-    //   },
-    //   {
-    //     title: 'Baka',
-    //     value: 2,
-    //   },
-    //   {
-    //     title: 'Baka',
-    //     value: 2,
-    //   },
-    //   {
-    //     title: 'Baka',
-    //     value: 2,
-    //   }],
-    // },
+    {
+      title: 'Статистические данные',
+      component: 'Counter',
+      name: 'counter',
+      data: [],
+    },
+    {
+      title: 'График',
+      component: 'ChartWithData',
+      name: 'chartWithData',
+      data: [],
+    },
   ],
 });
 
 export const mutations = {
-  SET_STATISTIC: (state, data) => state.statistic = data,
+  SET_STATISTIC: ({ statistic }, data) => {
+    statistic.forEach(s => s.data = []);
+
+    data.forEach(item => {
+      statistic.find(s => s.name === 'chartWithData').data = item.chartsWithData;
+      statistic.find(s => s.name === 'counter').data = item.counters;
+    });
+  },
 };
 
 export const actions = {
