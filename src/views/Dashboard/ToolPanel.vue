@@ -15,6 +15,20 @@
 
     <v-flex xs12 v-else>
       <v-card style="height: 100%">
+        <v-card-title>
+          <v-layout>
+            <div>Обновить статистику</div>
+            <div>
+              <tooltip-button
+                tooltip="Обновить статистику"
+                icon="refresh"
+                bottom
+                @action="refreshStatistic"
+              />
+            </div>
+          </v-layout>
+        </v-card-title>
+
         <v-expansion-panels
           v-model="panel"
           accordion
@@ -50,10 +64,12 @@
 
 <script>
 import Counter from '@/components/DashboardTools/Counter';
+import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'ToolPanel',
   components: {
+    TooltipButton,
     Counter,
   },
   props: {
@@ -65,6 +81,13 @@ export default {
   computed: {
     statistic() {
       return this.$store.getters['statistic/getStatistics'];
+    },
+  },
+  methods: {
+    refreshStatistic() {
+      this.$emit('set-loading', true);
+      this.$store.dispatch('statistic/refresh');
+      this.$emit('set-loading', false);
     },
   },
 };

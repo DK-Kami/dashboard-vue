@@ -36,6 +36,11 @@ export const actions = {
     commit('SET_STATISTIC', data);
     commit('auth/SET_URL', url, { root: true });
   },
+
+  async refreshStatistic({ commit }) {
+    const data = (await StatisticService.refreshStatistic()).data;
+    commit('SET_STATISTIC', data);
+  }
 };
 
 export const getters = {

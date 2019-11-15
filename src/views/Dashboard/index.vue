@@ -13,7 +13,7 @@
     </v-flex>
 
     <v-flex xs4>
-      <tool-panel :loading="loading" />
+      <tool-panel :loading="loading" @set-loading="loading = $event" />
     </v-flex>
   </v-layout>
 </template>
