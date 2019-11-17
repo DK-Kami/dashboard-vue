@@ -10,8 +10,8 @@ export const initialState = () => ({
     },
     {
       title: 'График',
-      component: 'ChartWithData',
-      name: 'chartWithData',
+      component: 'ColumnChart',
+      name: 'columnChart',
       data: [],
     },
   ],
@@ -22,7 +22,7 @@ export const mutations = {
     statistic.forEach(s => s.data = []);
 
     data.forEach(item => {
-      statistic.find(s => s.name === 'chartWithData').data = item.chartsWithData;
+      statistic.find(s => s.name === 'columnChart').data = item.chartsWithData;
       statistic.find(s => s.name === 'counter').data = item.counters;
     });
   },

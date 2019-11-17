@@ -65,14 +65,14 @@
 </template>
 
 <script>
-import ChartWithData from '@/components/DashboardTools/ChartWithData';
+import ColumnChart from '@/components/DashboardTools/ColumnChart';
 import Counter from '@/components/DashboardTools/Counter';
 import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'ToolPanel',
   components: {
-    ChartWithData,
+    ColumnChart,
     TooltipButton,
     Counter,
   },

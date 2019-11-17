@@ -8,7 +8,7 @@
 import Highcharts from 'highcharts';
 
 export default {
-  name: 'ChartWithData',
+  name: 'ColumnChart',
   props: {
     data: {
       type: Object,
@@ -37,10 +37,10 @@ export default {
 
     Highcharts.chart('container-' + this.index, {
       chart: {
+        height: this.isToolBar ? '125%' : '200%',
         backgroundColor: primary,
         borderWidth: 0,
         type: 'column',
-        height: '125%'
       },
       title: {
         text: title,
