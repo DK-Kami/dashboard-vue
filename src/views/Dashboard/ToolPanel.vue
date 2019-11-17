@@ -45,12 +45,14 @@
                 <v-flex
                   v-for="(item, index) in type.data"
                   :key="index"
+                  :class="type.name === 'counter' ? 'xs4' : 'xs6'"
                   class="pa-3"
-                  xs4
                 >
                   <component
                     :is="type.component"
+                    :index="index"
                     :data="item"
+                    is-tool-bar
                   />
                 </v-flex>
               </v-layout>
