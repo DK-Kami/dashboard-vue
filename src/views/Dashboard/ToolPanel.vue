@@ -66,14 +66,16 @@
 
 <script>
 import ColumnChart from '@/components/DashboardTools/ColumnChart';
+import PieChart from '@/components/DashboardTools/PieChart';
 import Counter from '@/components/DashboardTools/Counter';
 import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'ToolPanel',
   components: {
-    ColumnChart,
     TooltipButton,
+    ColumnChart,
+    PieChart,
     Counter,
   },
   props: {
