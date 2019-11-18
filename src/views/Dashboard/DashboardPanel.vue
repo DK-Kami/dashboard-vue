@@ -36,7 +36,8 @@ export default {
   methods: {
     addNewElement(data) {
       this.elements.push(data);
-    }
-  }
+      console.log(this.elements);
+    },
+  },
 };
 </script>

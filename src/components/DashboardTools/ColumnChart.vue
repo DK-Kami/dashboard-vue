@@ -37,7 +37,7 @@ export default {
 
     Highcharts.chart('container-' + this.index, {
       chart: {
-        height: this.isToolBar ? '125%' : '200%',
+        height: this.isToolBar ? '125%' : '75%',
         backgroundColor: primary,
         borderWidth: 0,
         type: 'column',

@@ -1,6 +1,6 @@
 <template>
   <v-layout fill-height>
-    <v-flex grow>
+    <v-flex xs8>
       <v-layout column fill-height>
         <v-flex shrink>
           <link-input :loading="loading" />
@@ -47,7 +47,6 @@ export default {
       this.loading = false;
     },
     startDrag(data) {
-      console.log(this.$refs['dashboard-panel']);
       this.$refs['dashboard-panel'].addNewElement(data);
       // `<${type} data="${item}">`
     },

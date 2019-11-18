@@ -44,13 +44,13 @@
               <v-layout wrap>
                 <v-flex
                   v-for="(item, index) in type.data"
-                  :key="index"
+                  :key="item.id"
                   :class="type.name === 'counter' ? 'xs4' : 'xs6'"
                   class="pa-3"
                 >
                   <drag-listener
-                    @start-drag="startDrag(type.name, index)"
-                    @end-drag="endDrag(type.name, index)"
+                    @start-drag="startDrag(type.name, item.id)"
+                    @end-drag="endDrag(type.name, item.id)"
                   >
                     <component
                       :is="type.component"
@@ -90,7 +90,7 @@ export default {
     loading: Boolean,
   },
   data: () => ({
-    panel: [0],
+    panel: [0, 0, 0],
   }),
   computed: {
     statistic() {
@@ -103,15 +103,14 @@ export default {
       this.$store.dispatch('statistic/refreshStatistic');
       this.$emit('set-loading', false);
     },
-    startDrag(name, index) {
+    startDrag(name, id) {
       const statisticType = this.statistic.find(s => s.name === name);
-      const item = statisticType.data[index];
+      const item = statisticType.data.find(s => s.id === id);
       const element = {
         type: statisticType.name,
         item,
       };
 
-      console.log(element)
       this.$emit('start-drag', element);
     },
     endDrag(name, index) {

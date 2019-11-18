@@ -37,7 +37,7 @@ export default {
 
 <style>
   .statistic-item {
-    background-color: black;
+    background-color: white;
   }
   .statistic-item--drag {
     cursor: grabbing;
