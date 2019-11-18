@@ -1,5 +1,5 @@
 <template>
-  <v-card class="text-center elevation-5 white--text no-select cursor--grab" color="accent">
+  <v-card class="text-center elevation-5 white--text no-select" color="accent">
     {{ data }}
   </v-card>
 </template>

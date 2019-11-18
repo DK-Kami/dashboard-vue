@@ -1,5 +1,5 @@
 <template>
-  <v-card class="text-center elevation-5 white--text no-select cursor--grab">
+  <v-card class="text-center elevation-5 white--text no-select">
     <div :id="`container-${index}`"></div>
   </v-card>
 </template>
