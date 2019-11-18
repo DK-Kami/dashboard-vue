@@ -1,11 +1,42 @@
 <template>
   <v-layout fill-height justify-center align-center>
-    here
+    <v-layout wrap>
+      <v-flex
+        v-for="(item, index) in elements"
+        :key="index"
+        class="pa-3"
+        shrink
+      >
+        <component
+          :is="item.type"
+          :data="item.item"
+        />
+      </v-flex>
+    </v-layout>
   </v-layout>
 </template>
 
 <script>
+import ColumnChart from '@/components/DashboardTools/ColumnChart';
+import PieChart from '@/components/DashboardTools/PieChart';
+import Counter from '@/components/DashboardTools/Counter';
+import TooltipButton from '@/components/TooltipButton';
+
 export default {
   name: 'DashboardPanel',
+  components: {
+    TooltipButton,
+    ColumnChart,
+    PieChart,
+    Counter,
+  },
+  data: () => ({
+    elements: [],
+  }),
+  methods: {
+    addNewElement(data) {
+      this.elements.push(data);
+    }
+  }
 };
 </script>

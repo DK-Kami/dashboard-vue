@@ -7,13 +7,17 @@
         </v-flex>
 
         <v-flex grow>
-          <dashboard-panel />
+          <dashboard-panel ref="dashboard-panel" />
         </v-flex>
       </v-layout>
     </v-flex>
 
     <v-flex xs4>
-      <tool-panel :loading="loading" @set-loading="loading = $event" />
+      <tool-panel
+        :loading="loading"
+        @set-loading="loading = $event"
+        @start-drag="startDrag"
+      />
     </v-flex>
   </v-layout>
 </template>
@@ -41,7 +45,12 @@ export default {
       this.loading = true;
       await this.$store.dispatch('statistic/loadStatistic');
       this.loading = false;
-    }
-  }
+    },
+    startDrag(data) {
+      console.log(this.$refs['dashboard-panel']);
+      this.$refs['dashboard-panel'].addNewElement(data);
+      // `<${type} data="${item}">`
+    },
+  },
 };
 </script>
