@@ -48,16 +48,15 @@
                   :class="type.name === 'counter' ? 'xs4' : 'xs6'"
                   class="pa-3"
                 >
-                  <drag-listener
-                    @start-drag="startDrag(type.name, item.id)"
-                    @end-drag="endDrag(type.name, item.id)"
-                  >
+                  <select-listener @select="select(type.name, item.id)">
                     <component
+                      :type="type.component"
                       :is="type.component"
+                      :index="index"
                       :data="item"
                       is-tool-bar
                     />
-                  </drag-listener>
+                  </select-listener>
                 </v-flex>
               </v-layout>
             </v-expansion-panel-content>
@@ -74,12 +73,12 @@ import PieChart from '@/components/DashboardTools/PieChart';
 import Counter from '@/components/DashboardTools/Counter';
 import TooltipButton from '@/components/TooltipButton';
 
-import DragListener from '@/components/abstracts/DragListener';
+import SelectListener from '@/components/abstracts/SelectListener';
 
 export default {
   name: 'ToolPanel',
   components: {
-    DragListener,
+    SelectListener,
 
     TooltipButton,
     ColumnChart,
@@ -88,6 +87,9 @@ export default {
   },
   props: {
     loading: Boolean,
+  },
+  created() {
+    this.refreshStatistic();
   },
   data: () => ({
     panel: [0, 0, 0],
@@ -103,7 +105,7 @@ export default {
       this.$store.dispatch('statistic/refreshStatistic');
       this.$emit('set-loading', false);
     },
-    startDrag(name, id) {
+    select(name, id) {
       const statisticType = this.statistic.find(s => s.name === name);
       const item = statisticType.data.find(s => s.id === id);
       const element = {
@@ -113,9 +115,6 @@ export default {
 
       this.$emit('start-drag', element);
     },
-    endDrag(name, index) {
-      //
-    }
   },
 };
 </script>

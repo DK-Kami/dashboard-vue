@@ -8,8 +8,10 @@
         shrink
       >
         <component
-          :is="item.type"
+          :type="item.type"
           :data="item.item"
+          :is="item.type"
+          :index="index"
         />
       </v-flex>
     </v-layout>

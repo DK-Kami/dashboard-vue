@@ -1,6 +1,6 @@
 <template>
   <v-card class="text-center elevation-5 white--text no-select">
-    <div :id="`container-${index}`"></div>
+    <div :id="`${type}-${index}`"></div>
   </v-card>
 </template>
 
@@ -15,6 +15,7 @@ export default {
     },
     isToolBar: Boolean,
     index: Number,
+    type: String,
   },
   mounted() {
     const { title, value } = this.data;
@@ -31,7 +32,7 @@ export default {
       info,
     } = this.$vuetify.theme.themes.light;
 
-    Highcharts.chart('container-' + this.index, {
+    Highcharts.chart([this.type, this.index].join('-'), {
       chart: {
         height: this.isToolBar ? '125%' : '200%',
         backgroundColor: primary,
