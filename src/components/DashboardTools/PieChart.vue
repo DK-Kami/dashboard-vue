@@ -1,5 +1,5 @@
 <template>
-  <v-card class="text-center elevation-5 white--text no-select">
+  <v-card class="text-center elevation-5 white--text no-select pie-chart">
     <div :id="`${type}-${index}`"></div>
   </v-card>
 </template>
@@ -34,7 +34,8 @@ export default {
 
     Highcharts.chart([this.type, this.index].join('-'), {
       chart: {
-        height: this.isToolBar ? '125%' : '200%',
+        height: this.isToolBar ? '125%' : '100%',
+        width: this.isToolBar ? '225' : '400',
         backgroundColor: primary,
         borderWidth: 0,
         plotBackgroundColor: null,
@@ -132,3 +133,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .pie-chart {
+    max-width: 400px;
+  }
+</style>

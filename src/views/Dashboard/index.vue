@@ -48,7 +48,7 @@ export default {
     },
     startDrag(data) {
       this.$refs['dashboard-panel'].addNewElement(data);
-      // `<${type} data="${item}">`
+      console.log(data);
     },
   },
 };
