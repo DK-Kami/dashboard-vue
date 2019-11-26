@@ -88,9 +88,6 @@ export default {
   props: {
     loading: Boolean,
   },
-  created() {
-    this.refreshStatistic();
-  },
   data: () => ({
     panel: [0, 0, 0],
   }),

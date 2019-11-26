@@ -27,11 +27,16 @@ export const mutations = {
   SET_STATISTIC: ({ statistic }, data) => {
     statistic.forEach(s => s.data = []);
 
-    data.forEach(item => {
-      statistic.find(s => s.name === 'columnChart').data = item.columnChart;
-      statistic.find(s => s.name === 'pieChart').data = item.pieChart;
-      statistic.find(s => s.name === 'counter').data = item.counters;
+    statistic.forEach(stat => {
+      const currentStatistic = data.filter(d => d.type.type === stat.name);
+      stat.data = currentStatistic;
     });
+
+    // data.forEach(item => {
+    //   statistic.find(s => s.name === 'columnChart').data = item.columnChart;
+    //   statistic.find(s => s.name === 'pieChart').data = item.pieChart;
+    //   statistic.find(s => s.name === 'counter').data = item.counters;
+    // });
   },
 };
 
