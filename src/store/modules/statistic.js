@@ -50,7 +50,12 @@ export const actions = {
   async refreshStatistic({ commit }) {
     const data = (await StatisticService.refreshStatistic()).data;
     commit('SET_STATISTIC', data);
-  }
+  },
+
+  async saveUserStatistic(_, element) {
+    console.log(element.item._id);
+    await StatisticService.saveStatistic(element.item._id);
+  },
 };
 
 export const getters = {

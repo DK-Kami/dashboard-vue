@@ -48,7 +48,7 @@ export default {
     },
     startDrag(data) {
       this.$refs['dashboard-panel'].addNewElement(data);
-      console.log(data);
+      this.$store.dispatch('statistic/saveUserStatistic', data);
     },
   },
 };
