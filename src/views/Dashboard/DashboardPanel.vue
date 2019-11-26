@@ -32,6 +32,9 @@ export default {
     PieChart,
     Counter,
   },
+  created() {
+    this.loadDashboard();
+  },
   data: () => ({
     elements: [],
   }),
@@ -39,6 +42,17 @@ export default {
     addNewElement(data) {
       this.elements.push(data);
     },
+    async loadDashboard() {
+      const elements = await this.$store.dispatch('statistic/loadDashboard');
+      this.elements = elements.map(el => {
+        const type = el.name;
+        return el.data.map(d => ({
+          item: d,
+          type,
+        }));
+      })
+        .flat();
+    }
   },
 };
 </script>

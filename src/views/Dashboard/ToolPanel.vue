@@ -103,6 +103,7 @@ export default {
       this.$emit('set-loading', false);
     },
     select(name, id) {
+      // console.log(name, id);
       const statisticType = this.statistic.find(s => s.name === name);
       const item = statisticType.data.find(s => s.id === id);
       const element = {

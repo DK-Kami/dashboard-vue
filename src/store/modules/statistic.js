@@ -31,12 +31,6 @@ export const mutations = {
       const currentStatistic = data.filter(d => d.type.type === stat.name);
       stat.data = currentStatistic;
     });
-
-    // data.forEach(item => {
-    //   statistic.find(s => s.name === 'columnChart').data = item.columnChart;
-    //   statistic.find(s => s.name === 'pieChart').data = item.pieChart;
-    //   statistic.find(s => s.name === 'counter').data = item.counters;
-    // });
   },
 };
 
@@ -45,6 +39,14 @@ export const actions = {
     const { url, data } = (await StatisticService.loadStatistic()).data;
     commit('SET_STATISTIC', data);
     commit('auth/SET_URL', url, { root: true });
+  },
+  async loadDashboard({ state: { statistic } }) {
+    const data = (await StatisticService.loadDashboard()).data;
+    statistic.forEach(stat => {
+      const currentStatistic = data.filter(d => d.type.type === stat.name);
+      stat.data = currentStatistic;
+    });
+    return statistic;
   },
 
   async refreshStatistic({ commit }) {

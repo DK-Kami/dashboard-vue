@@ -2,6 +2,9 @@ export default {
   loadStatistic() {
     return this.apiClient.get('statistic/');
   },
+  loadDashboard() {
+    return this.apiClient.get('statistic/dashboard');
+  },
   refreshStatistic() {
     return this.apiClient.get('statistic/refresh');
   },
