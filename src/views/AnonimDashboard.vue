@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="my-2">
     <v-layout fill-height justify-center align-center wrap>
-      <v-flex class="headline font-weight-medium" xs12>
+      <v-flex class="headline font-weight-medium ma-4" xs12>
         {{ nickname }}
       </v-flex>
 
