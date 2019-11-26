@@ -1,11 +1,11 @@
 <template>
   <v-container class="my-2">
     <v-layout fill-height justify-center align-center wrap>
-      <v-flex class="headline font-weight-medium ma-4" xs12>
-        {{ nickname }}
+      <v-flex class="headline ma-4" xs12>
+        Статистика пользователя: <span class="font-weight-medium">{{ nickname }}</span>
       </v-flex>
 
-      <v-layout wrap>
+      <v-layout wrap class="pa-5 grey lighten-3 dashboard-field">
         <v-flex
           v-for="(item, index) in elements"
           :key="index"
@@ -67,3 +67,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .dashboard-field {
+    border-radius: 20px;
+  }
+</style>

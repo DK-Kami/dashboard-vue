@@ -24,13 +24,17 @@ export const initialState = () => ({
 });
 
 export const mutations = {
-  SET_STATISTIC: ({ statistic }, data) => {
-    statistic.forEach(s => s.data = []);
+  SET_STATISTIC: (state, data) => {
+    state.statistic.forEach(s => s.data = []);
 
-    statistic.forEach(stat => {
+    const stats = state.statistic.map(stat => {
       const currentStatistic = data.filter(d => d.type.type === stat.name);
-      stat.data = currentStatistic;
+      return {
+        ...stat,
+        data: currentStatistic.slice(),
+      };
     });
+    state.statistic = stats.slice();
   },
 };
 
@@ -40,16 +44,22 @@ export const actions = {
     commit('SET_STATISTIC', data);
     commit('auth/SET_URL', url, { root: true });
   },
-  async loadDashboard({ state: { statistic } }) {
+  async loadDashboard({ state }) {
+
+    const statistic = state.statistic.slice();
     const data = (await StatisticService.loadDashboard()).data;
+
     statistic.forEach(stat => {
       const currentStatistic = data.filter(d => d.type.type === stat.name);
       stat.data = currentStatistic;
     });
     return statistic;
   },
-  async loadUserDashboard({ state: { statistic } }, token) {
+  async loadUserDashboard({ state }, token) {
+
+    const statistic = state.statistic.slice();
     const data = (await StatisticService.loadUserDashboard(token)).data;
+
     statistic.forEach(stat => {
       const currentStatistic = data.filter(d => d.type.type === stat.name);
       stat.data = currentStatistic;
