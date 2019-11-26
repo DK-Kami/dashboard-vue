@@ -1,24 +1,30 @@
 <template>
   <v-app>
     <login-page v-if="isLogin" />
+    <anonim-dashboard v-else-if="isAnonimDashboard" />
 
     <default-layout v-else />
   </v-app>
 </template>
 
 <script>
+import AnonimDashboard from './views/AnonimDashboard.vue';
 import LoginPage from './views/LoginPage';
 import DefaultLayout from './Layout';
 
 export default {
   name: 'App',
   components: {
+    AnonimDashboard,
     DefaultLayout,
     LoginPage,
   },
   computed: {
     isLogin() {
       return this.$route.name === 'login' || this.$route.name === 'register';
+    },
+    isAnonimDashboard() {
+      return this.$route.name === 'AnonimDashboard';
     },
   },
 };

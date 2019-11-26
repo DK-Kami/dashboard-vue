@@ -38,6 +38,13 @@ const router = new Router({
       component: () => import('@/views/Settings'),
     },
     {
+      name: 'AnonimDashboard',
+      path: '/fs/:token/:nickname',
+      meta: {
+        access: true,
+      },
+    },
+    {
       path: '/*',
       redirect: '/dashboard',
     },

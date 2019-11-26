@@ -48,6 +48,14 @@ export const actions = {
     });
     return statistic;
   },
+  async loadUserDashboard({ state: { statistic } }, token) {
+    const data = (await StatisticService.loadUserDashboard(token)).data;
+    statistic.forEach(stat => {
+      const currentStatistic = data.filter(d => d.type.type === stat.name);
+      stat.data = currentStatistic;
+    });
+    return statistic;
+  },
 
   async refreshStatistic({ commit }) {
     const data = (await StatisticService.refreshStatistic()).data;
