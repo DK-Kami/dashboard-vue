@@ -36,6 +36,21 @@ export const actions = {
         });
     });
   },
+  registration({ commit }, { password, nickname, email }) {
+    return new Promise(res => {
+      UserService.register({password, nickname, email})
+        .then(user => {
+          res({ error: false, data: user });
+          dispatch('notification/set', {
+            message: 'Пользователь зарегистрирован',
+            type: 'success',
+          }, { root: true });
+        })
+        .catch(err => {
+          res({ error: true, data: err });
+        });
+    });
+  },
   changeProfileData({ commit }, user) {
     commit('CHANGE_PROFILE_DATA', user);
   },
@@ -46,7 +61,7 @@ export const actions = {
     dispatch('notification/set', {
       message: 'Новая ссылка была сгенерирована',
       type: 'success',
-    }, { root: true })
+    }, { root: true });
   },
 };
 

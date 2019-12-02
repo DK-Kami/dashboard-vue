@@ -14,6 +14,20 @@ export default {
         .catch(err => rej(err));
     });
   },
+  register({ password, nickname, email }) {
+    return new Promise((res, rej) => {
+      this.apiClient.post('/register', {
+        nickname,
+        password,
+        email,
+      })
+        .then(response => {
+          const user = response.data.user;
+          res(user);
+        })
+        .catch(err => rej(err));
+    });
+  },
   logout() {
     this.apiClient.logout();
   },

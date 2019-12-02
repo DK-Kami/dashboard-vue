@@ -7,6 +7,8 @@ export default function (store) {
       webClient.login(token);
     }
 
+    debugger;
+
     if (store.getters['auth/isSigned'] && to.name === 'login') {
       next({ name: 'dashboard' });
     }
