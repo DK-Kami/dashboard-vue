@@ -45,6 +45,9 @@ export default {
       },
       title: {
         text: title,
+        style: {
+          color: '#fff'
+        }
       },
       accessibility: {
         announceNewData: {
