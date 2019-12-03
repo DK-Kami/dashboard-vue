@@ -16,16 +16,28 @@
     <v-flex xs12 v-else>
       <v-card style="height: 100%">
         <v-card-title>
-          <v-layout>
-            <div>Обновить статистику</div>
-            <div>
+          <v-layout align-center justify-space-between>
+            <v-flex shrink class="cursor--pointer">
+              <span class="primary--text font-weight-light">Обновить статистику</span>
               <tooltip-button
                 tooltip="Обновить статистику"
+                color="primary"
                 icon="refresh"
                 bottom
                 @action="refreshStatistic"
               />
-            </div>
+            </v-flex>
+
+            <v-flex shrink class="cursor--pointer">
+              <tooltip-button
+                :tooltip="`В${deleteMode && 'ы'}ключить режим удаления`"
+                icon="delete"
+                color="error"
+                bottom
+                @action="changeMode"
+              />
+              <span class="error--text font-weight-light">{{ deleteMode ? 'Прекратить' : 'Режим удаления' }}</span>
+            </v-flex>
           </v-layout>
         </v-card-title>
 
@@ -86,6 +98,7 @@ export default {
     Counter,
   },
   props: {
+    deleteMode: Boolean,
     loading: Boolean,
   },
   data: () => ({
@@ -111,6 +124,9 @@ export default {
       };
 
       this.$emit('start-drag', element);
+    },
+    changeMode() {
+      this.$emit('change-mode');
     },
   },
 };
