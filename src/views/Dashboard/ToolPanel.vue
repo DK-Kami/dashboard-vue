@@ -48,7 +48,7 @@
                   :class="type.name === 'counter' ? 'xs4' : 'xs6'"
                   class="pa-3"
                 >
-                  <select-listener @select="select(type.name, item.id)">
+                  <select-listener @select="select(type.name, item._id)">
                     <component
                       :type="type.component"
                       :is="type.component"
@@ -103,9 +103,8 @@ export default {
       this.$emit('set-loading', false);
     },
     select(name, id) {
-      // console.log(name, id);
       const statisticType = this.statistic.find(s => s.name === name);
-      const item = statisticType.data.find(s => s.id === id);
+      const item = statisticType.data.find(s => s._id === id);
       const element = {
         type: statisticType.name,
         item,
