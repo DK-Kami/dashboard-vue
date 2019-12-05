@@ -2,29 +2,32 @@
   <v-navigation-drawer
     color="primary"
     class="drawer"
+    expand-on-hover
     permanent
     dark
     app
   >
-    <v-list two-line>
-      <v-list-item>
-        <v-list-item-avatar>
-          <v-avatar color="accent">{{ user.avatar }}</v-avatar>
-        </v-list-item-avatar>
+    <template #prepend>
+      <v-list two-line>
+        <v-list-item>
+          <v-list-item-avatar>
+            <v-avatar color="accent">{{ user.avatar }}</v-avatar>
+          </v-list-item-avatar>
 
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ user.nickname }}
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            {{ user.email }}
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ user.nickname }}
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              {{ user.email }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </template>
     <v-divider />
 
-    <v-list avatar nav>
+    <v-list dense nav>
       <v-list-item
         v-for="item in menu"
         :key="item.icon"
@@ -32,18 +35,18 @@
         class="cursor--pointer"
         ripple
       >
-        <v-list-item-avatar>
+        <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-avatar>
+        </v-list-item-icon>
 
-        {{ item.text }}
+        <v-list-item-title>{{ item.text }}</v-list-item-title>
       </v-list-item>
     </v-list>
 
     <template v-slot:append>
       <div class="pa-2">
         <v-btn
-          color="accent"
+          color="secondary"
           outlined
           block
           @click="logout"
