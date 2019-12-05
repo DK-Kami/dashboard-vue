@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import listners from './listners';
 import initListners from './initListners';
+import LoginPage from '@/views/LoginPage';
 
 Vue.use(Router);
 
@@ -14,6 +15,7 @@ const router = new Router({
       meta: {
         access: true,
       },
+      component: LoginPage,
     },
     {
       name: 'registration',
@@ -21,6 +23,7 @@ const router = new Router({
       meta: {
         access: true,
       },
+      component: LoginPage,
     },
     {
       name: 'profile',
@@ -43,6 +46,7 @@ const router = new Router({
       meta: {
         access: true,
       },
+      component: () => import('@/views/AnonimDashboard'),
     },
     {
       path: '/*',
