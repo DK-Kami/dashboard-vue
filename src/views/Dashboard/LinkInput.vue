@@ -27,6 +27,7 @@
             Сгенерировать новую ссылку
           </v-tooltip>
         </template>
+
         <template #append>
           <v-tooltip top>
             <template #activator="{ on }">
@@ -50,17 +51,21 @@
 <script>
 export default {
   name: 'LinkInput',
+
   props: {
     loading: Boolean,
   },
+
   data: () => ({
     loadinglink: false,
   }),
+
   computed: {
     url() {
       return this.$store.getters['auth/getUrl'];
     },
   },
+
   methods: {
     async regenerateUrl() {
       this.loadinglink = true;

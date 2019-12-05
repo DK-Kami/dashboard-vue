@@ -1,6 +1,6 @@
 <template>
   <v-layout fill-height justify-center align-center>
-    <v-layout wrap>
+    <v-layout wrap class="dashboard-panel">
       <v-flex
         v-for="(item, index) in elements"
         :key="index"
@@ -26,18 +26,22 @@ import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'DashboardPanel',
+
   components: {
     TooltipButton,
     ColumnChart,
     PieChart,
     Counter,
   },
+
   created() {
     this.loadDashboard();
   },
+
   data: () => ({
     elements: [],
   }),
+
   methods: {
     addNewElement(data) {
       this.elements.push(data);
@@ -56,3 +60,10 @@ export default {
   },
 };
 </script>
+
+<style>
+  .dashboard-panel {
+    overflow-y: auto;
+    height: 88vh;
+  }
+</style>
