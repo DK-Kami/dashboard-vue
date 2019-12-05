@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import dialog from '@/plugins/mixins/dialog';
+import dialog from '@/helper/mixins/dialog';
 
 export default {
   name: 'EditDialog',
