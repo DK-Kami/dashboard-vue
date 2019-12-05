@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
-import services from '@/middleware';
 import modules from './modules';
-
+import RStore from '../helper/RStore';
 import initialModules from './initialModules';
 import UserService from '../middleware/services/UserService';
 
@@ -35,11 +33,10 @@ const initialState = () => ({
   }
 });
 
-export default new Vuex.Store({
+const vuex = new Vuex.Store({
   state: initialState(),
-  getters: {
-    getRules: state => state.rules,
-    getPerPage: state => state.perPages,
+  mutations: {
+    UNSET_DATA: state => state = initialState(),
   },
   actions: {
     logout({ commit }) {
@@ -47,12 +44,19 @@ export default new Vuex.Store({
         commit(`${m}/UNSET_DATA`)
       });
       commit('UNSET_DATA');
+      dispatch('saveToLocaleStorage');
       UserService.logout();
     },
+    saveToLocaleStorage(_, data) {
+      RStore.initState(data);
+    }
   },
-  mutations: {
-    UNSET_DATA: state => state = initialState(),
+  getters: {
+    getRules: state => state.rules,
+    getPerPage: state => state.perPages,
   },
   modules: initialModules(modules),
-  plugins: [createPersistedState()],
 });
+
+export default vuex;
+

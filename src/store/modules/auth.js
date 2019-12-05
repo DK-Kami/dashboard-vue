@@ -1,20 +1,21 @@
-import UserService from "../../middleware/services/UserService";
+import services from '@/middleware';
+const { UserService } = services
 
 export const initialState = () => ({
   isSigned: false,
-  nickname: '',
-  email: '',
   token: '',
-  url: '',
+  user: {
+    nickname: '',
+    email: '',
+    url: '',
+  }
 });
 
 export const mutations = {
-  LOGIN: (state, { nickname, email, token, url }) => {
-    state.nickname = nickname;
-    state.email = email;
-    state.token = token;
-    state.url = url;
+  LOGIN: (state, { token, user }) => {
     state.isSigned = true;
+    state.token = token;
+    state.user = user;
   },
   CHANGE_PROFILE_DATA: (state, { nickname, email }) => {
     state.nickname = nickname;
@@ -24,11 +25,21 @@ export const mutations = {
 };
 
 export const actions = {
-  login({ commit }, { login, password }) {
+  loginFromState: ({ commit }, data) => commit('LOGIN', data),
+
+  login({ commit, dispatch }, { login, password }) {
     return new Promise(res => {
-      UserService.login({login, password})
-        .then(user => {
-          commit('LOGIN', user);
+      UserService.login({ login, password })
+        .then(response => {
+          const token = response.token;
+          const user = {
+            nickname: response.nickname,
+            email: response.email,
+            url: response.url,
+          }
+
+          commit('LOGIN', { token, user });
+          dispatch('saveToLocaleStorage', { token, user }, { root: true });
           res({ error: false, data: user });
         })
         .catch(err => {

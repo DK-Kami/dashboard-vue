@@ -32,18 +32,22 @@ import TooltipButton from '@/components/TooltipButton';
 
 export default {
   name: 'DashboardPanel',
+
   components: {
     TooltipButton,
     ColumnChart,
     PieChart,
     Counter,
   },
+
   created() {
     this.loadDashboard();
   },
+
   data: () => ({
     elements: [],
   }),
+
   computed: {
     nickname() {
       return this.$route.params.nickname;
@@ -52,6 +56,7 @@ export default {
       return this.$route.params.token;
     },
   },
+
   methods: {
     async loadDashboard() {
       const elements = await this.$store.dispatch('statistic/loadUserDashboard', this.token);
