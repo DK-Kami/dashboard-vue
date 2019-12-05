@@ -77,10 +77,10 @@ export const actions = {
 };
 
 export const getters = {
-  getNickname: state => state.nickname,
-  getAvatar: state => state.nickname.charAt(0),
+  getNickname: state => state.user.nickname,
+  getAvatar: state => state.user.nickname.charAt(0),
   isSigned: state => state.isSigned,
-  getEmail: state => state.email,
+  getEmail: state => state.user.email,
   getToken: state => state.token,
 
   getUser: (_, getters) => ({
