@@ -1,30 +1,39 @@
 <template>
   <v-app>
-    <login-page v-if="isLogin" />
-    <anonim-dashboard v-else-if="isAnonimDashboard" />
+    <template v-if="isEmpty">
+      <router-view />
+    </template>
 
-    <default-layout v-else />
+    <v-content v-else fluid>
+      <the-menu />
+      <notification />
+
+      <v-slide-y-transition>
+        <v-container fluid class="pa-0" fill-height>
+          <v-layout fill-height justify-center>
+            <router-view />
+          </v-layout>
+        </v-container>
+      </v-slide-y-transition>
+    </v-content>
   </v-app>
 </template>
 
 <script>
-import AnonimDashboard from './views/AnonimDashboard.vue';
-import LoginPage from './views/LoginPage';
-import DefaultLayout from './Layout';
+import Notification from '@/components/Notification';
+import TheMenu from '@/components/TheMenu';
 
 export default {
   name: 'App',
+
   components: {
-    AnonimDashboard,
-    DefaultLayout,
-    LoginPage,
+    Notification,
+    TheMenu,
   },
+
   computed: {
-    isLogin() {
-      return this.$route.name === 'login' || this.$route.name === 'register';
-    },
-    isAnonimDashboard() {
-      return this.$route.name === 'AnonimDashboard';
+    isEmpty() {
+      return this.$route.meta.access;
     },
   },
 };
