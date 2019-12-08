@@ -164,5 +164,6 @@ export default {
   .tool-panel {
     height: 100vh;
     width: 100%;
+    overflow-y: auto;
   }
 </style>

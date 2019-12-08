@@ -40,6 +40,10 @@ export default {
 </script>
 
 <style lang="stylus">
+html {
+  overflow-y: hidden !important;
+}
+
 .cursor--pointer {
   cursor: pointer;
 }

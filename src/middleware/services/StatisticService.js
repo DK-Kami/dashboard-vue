@@ -11,6 +11,9 @@ export default {
   saveStatistic(id) {
     return this.apiClient.post('statistic/save', { id });
   },
+  deleteStatistic(id) {
+    return this.apiClient.post('statistic/delete', { id });
+  },
   loadUserDashboard(token) {
     return this.apiClient.get('statistic/user-dashboard', { token });
   },

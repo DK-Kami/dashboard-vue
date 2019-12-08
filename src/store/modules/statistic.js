@@ -56,7 +56,6 @@ export const actions = {
     return statistic;
   },
   async loadUserDashboard({ state }, token) {
-
     const statistic = state.statistic.slice();
     const data = (await StatisticService.loadUserDashboard(token)).data;
 
@@ -75,6 +74,11 @@ export const actions = {
   async saveUserStatistic(_, element) {
     console.log(element.item._id);
     await StatisticService.saveStatistic(element.item._id);
+  },
+
+  async deleteUserStatistic(_, id) {
+    console.log(id);
+    await StatisticService.deleteStatistic(id);
   },
 };
 

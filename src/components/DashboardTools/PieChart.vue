@@ -1,6 +1,6 @@
 <template>
   <v-card class="text-center elevation-5 white--text no-select pie-chart">
-    <div :id="`${type}-${index}`"></div>
+    <div :id="`${type}-${data._id}`"></div>
   </v-card>
 </template>
 
@@ -14,7 +14,6 @@ export default {
       type: Object,
     },
     isToolBar: Boolean,
-    index: Number,
     type: String,
   },
   mounted() {
@@ -32,7 +31,7 @@ export default {
       info,
     } = this.$vuetify.theme.themes.light;
 
-    Highcharts.chart([this.type, this.index].join('-'), {
+    Highcharts.chart([this.type, this.data._id].join('-'), {
       chart: {
         height: this.isToolBar ? '125%' : '100%',
         width: this.isToolBar ? '225' : '400',
