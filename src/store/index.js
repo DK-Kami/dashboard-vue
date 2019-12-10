@@ -39,7 +39,7 @@ const vuex = new Vuex.Store({
     UNSET_DATA: state => state = initialState(),
   },
   actions: {
-    logout({ commit }) {
+    logout({ commit, dispatch }) {
       Object.keys(modules).forEach(m => {
         commit(`${m}/UNSET_DATA`)
       });
@@ -49,7 +49,7 @@ const vuex = new Vuex.Store({
     },
     saveToLocaleStorage(_, data) {
       RStore.initState(data);
-    }
+    },
   },
   getters: {
     getRules: state => state.rules,

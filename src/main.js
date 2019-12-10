@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 const router = initRouter(store);
 
 RStore.subscribe('afterUpdate', state => {
-  store.dispatch(state ? 'auth/loginFromState' : 'unsetUserData', state);
+  store.dispatch(state ? 'auth/loginFromState' : 'logout', state);
   return router.push('/');
 });
 

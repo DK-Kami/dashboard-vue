@@ -21,7 +21,7 @@ export const mutations = {
     state.nickname = nickname;
     state.email = email;
   },
-  SET_URL: (state, url) => state.url = url,
+  SET_URL: (state, url) => state.user.url = url,
 };
 
 export const actions = {
@@ -88,5 +88,5 @@ export const getters = {
     avatar: getters.getAvatar,
     email: getters.getEmail,
   }),
-  getUrl: state => state.url,
+  getUrl: state => state.user.url,
 };

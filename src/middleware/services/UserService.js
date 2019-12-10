@@ -32,6 +32,10 @@ export default {
     this.apiClient.logout();
   },
 
+  uploadAvatar(file) {
+    return this.apiClient.post('/user/upload-avatar', { file });
+  },
+
   saveProfile(user) {
     return this.apiClient.put('/user/profile', user);
   },

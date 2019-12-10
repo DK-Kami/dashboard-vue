@@ -41,6 +41,10 @@ export const actions = {
     };
   },
 
+  uploadAvatar({ commit }, file) {
+    return UserService.uploadAvatar(file);
+  },
+
   setCurrentUserAccount({ commit, dispatch }, data = { account, token }) {
     commit('ADD_ACCOUNT', {
       ...data.account,

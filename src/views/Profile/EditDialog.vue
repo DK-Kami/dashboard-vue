@@ -10,6 +10,7 @@
                   color="accent elevation-10 cursor--pointer"
                   size="90"
                   v-on="on"
+                  @click="openImageDialog"
                 >
                   <v-icon class="white--text">add</v-icon>
                 </v-avatar>
@@ -17,6 +18,14 @@
               Загрузить изображение
             </v-tooltip>
           </v-flex>
+
+          <input
+            v-show="false"
+            ref="imageUpload"
+            accept="image/jpg,image/jpeg,image/png"
+            type="file"
+            @change="loadImage()"
+          >
 
           <v-flex xs5>
             <v-text-field
@@ -111,6 +120,10 @@ export default {
         };
       });
     },
+
+    imageUpload() {
+      return this.$refs.imageUpload;
+    },
   },
   methods: {
     async loadInfoTypes() {
@@ -124,6 +137,29 @@ export default {
       if (!error) this.dialog = false;
       this.loading = false;
     },
+
+    openImageDialog() {
+      this.imageUpload.click();
+    },
+
+    loadImage() {
+      const file = this.imageUpload.files[0];
+      const supportedMimeType = ['jpg', 'jpeg', 'png'];
+      const [type, mimeType] = file.type.split('/');
+      console.log(type, mimeType);
+
+      if (type === 'image' && supportedMimeType.includes(mimeType)) {
+        // const data = new FormData();
+        // data.append('uploadFile', file);
+
+        return this.$store.dispatch('user/uploadAvatar', file);
+      }
+
+      this.$store.dispatch('notification/set', {
+        message: 'Неверный формат файла. Нужно загрузить изображение',
+        type: 'error',
+      });
+    }
   },
 };
 </script>
