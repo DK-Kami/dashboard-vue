@@ -11,7 +11,9 @@
       <v-list two-line>
         <v-list-item>
           <v-list-item-avatar>
-            <v-avatar color="accent">{{ user.avatar }}</v-avatar>
+            <v-avatar>
+              <img :src="user.avatar">
+            </v-avatar>
           </v-list-item-avatar>
 
           <v-list-item-content>

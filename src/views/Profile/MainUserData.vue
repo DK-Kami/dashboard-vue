@@ -5,10 +5,9 @@
       <v-layout align-center column>
         <v-avatar
           class="white--text mt-n12 elevation-10 cursor--pointer no-select"
-          color="accent"
           size="80"
         >
-          <div>{{ user.avatar }}</div>
+          <img :src="user.avatar">
         </v-avatar>
 
         <v-tooltip top>

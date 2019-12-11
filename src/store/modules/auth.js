@@ -6,6 +6,7 @@ export const initialState = () => ({
   token: '',
   user: {
     nickname: '',
+    avatar: '',
     email: '',
     url: '',
   }
@@ -34,6 +35,7 @@ export const actions = {
           const token = response.token;
           const user = {
             nickname: response.nickname,
+            avatar: response.avatar,
             email: response.email,
             url: response.url,
           }
@@ -78,9 +80,9 @@ export const actions = {
 
 export const getters = {
   getNickname: state => state.user.nickname,
-  getAvatar: state => state.user.nickname.charAt(0),
-  isSigned: state => state.isSigned,
+  getAvatar: state => state.user.avatar,
   getEmail: state => state.user.email,
+  isSigned: state => state.isSigned,
   getToken: state => state.token,
 
   getUser: (_, getters) => ({

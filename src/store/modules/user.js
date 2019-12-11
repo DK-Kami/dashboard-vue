@@ -18,6 +18,7 @@ export const mutations = {
     state.info = state.userEdit.info = data.info;
 
     state.userEdit.nickname = data.nickname;
+    state.userEdit.avatar = data.avatar;
     state.userEdit.email = data.email;
   },
   SET_ACCOUNTS: (state, accounts) => state.accounts = accounts,

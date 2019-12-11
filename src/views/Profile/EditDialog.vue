@@ -4,19 +4,23 @@
       <v-card-title>
         <v-layout wrap justify-space-between>
           <v-flex xs12 class="text-center mb-7">
-            <v-tooltip top>
-              <template #activator="{ on }">
+            <!-- <v-tooltip top>
+              <template #activator="{ on }"> -->
                 <v-avatar
-                  color="accent elevation-10 cursor--pointer"
+                  class="elevation-10 cursor--pointer"
                   size="90"
                   v-on="on"
-                  @click="openImageDialog"
                 >
-                  <v-icon class="white--text">add</v-icon>
+                  <img :src="user.avatar">
+                  <!-- @click="openImageDialog" -->
+                  <!-- <v-icon class="white--text">add</v-icon> -->
                 </v-avatar>
-              </template>
-              Загрузить изображение
-            </v-tooltip>
+              <!-- </template> -->
+              <!-- Загрузить изображение -->
+            <!-- </v-tooltip> -->
+            <div class="caption mt-4">
+              <a href="https://en.gravatar.com/emails" target="blank">Для смены автара измените автара на сайте Gravatar</a>
+            </div>
           </v-flex>
 
           <input
@@ -149,10 +153,11 @@ export default {
       console.log(type, mimeType);
 
       if (type === 'image' && supportedMimeType.includes(mimeType)) {
-        // const data = new FormData();
-        // data.append('uploadFile', file);
+        const data = new FormData();
+        data.append('filedata', file);
 
-        return this.$store.dispatch('user/uploadAvatar', file);
+        console.log(data);
+        return this.$store.dispatch('user/uploadAvatar', data);
       }
 
       this.$store.dispatch('notification/set', {

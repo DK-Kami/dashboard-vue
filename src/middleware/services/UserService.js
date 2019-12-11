@@ -33,7 +33,7 @@ export default {
   },
 
   uploadAvatar(file) {
-    return this.apiClient.post('/user/upload-avatar', { file });
+    return this.apiClient.post('/user/upload-avatar', file);
   },
 
   saveProfile(user) {
