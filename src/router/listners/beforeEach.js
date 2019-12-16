@@ -1,18 +1,33 @@
 import webClient from '../../middleware/WebClient';
 
+const lastRoute = {};
+
+function isEmpty(object) {
+  return !Object.keys(object).length;
+};
+
 export default function (store) {
   return (to, from, next) => {
-    const token = store.getters['auth/getToken'] ;
+    const token = store.getters['auth/getToken'];
+    const isSigned = store.getters['auth/isSigned'];
+
     if (token) {
       webClient.login(token);
     }
 
-    if (store.getters['auth/isSigned'] && to.name === 'login') {
-      next({ name: 'dashboard' });
+    const isPing = !!(to.path === '/ping' && lastRoute);
+    const { name, meta, path } = isPing ? lastRoute : to;
+    const { access } = meta;
+    // debugger;
+
+    if ((isEmpty(lastRoute) && to.name === 'login') || to.name !== 'login') Object.assign(lastRoute, to);
+    if (!isSigned) {
+      if (access && name) return next((isPing && path) || true);
+      return next('/login');
     }
-    else if (!store.getters['auth/isSigned'] && !to.meta.access) {
-      next({ name: 'login' });
+    if (!to.meta.access) {
+      return next((isPing && path) || true);
     }
-    else next();
+    return next({ name: 'dashboard' });
   }
 };
