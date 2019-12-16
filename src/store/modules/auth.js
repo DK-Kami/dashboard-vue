@@ -60,7 +60,15 @@ export const actions = {
           }, { root: true });
         })
         .catch(err => {
-          res({ error: true, data: err });
+          let message = 'Произошла ошибка сервера, попробуйте позже';
+          if (err.nickname) {
+            message = 'Пользователь с таким именем уже существует';
+          }
+          if (err.email) {
+            message = 'Данный email уже используется';
+          }
+
+          res({ error: true, data: message });
         });
     });
   },

@@ -39,7 +39,7 @@
         small
         text
         @click="$emit('change-form')"
-      >Зарегистрируйтесь сейчас</v-btn>
+      >зарегистрироваться сейчас</v-btn>
       <v-btn
         color="primary"
         type="submit"
