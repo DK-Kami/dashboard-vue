@@ -4,20 +4,13 @@
       <v-card-title>
         <v-layout wrap justify-space-between>
           <v-flex xs12 class="text-center mb-7">
-            <!-- <v-tooltip top>
-              <template #activator="{ on }"> -->
-                <v-avatar
-                  class="elevation-10 cursor--pointer"
-                  size="90"
-                  v-on="on"
-                >
-                  <img :src="user.avatar">
-                  <!-- @click="openImageDialog" -->
-                  <!-- <v-icon class="white--text">add</v-icon> -->
-                </v-avatar>
-              <!-- </template> -->
-              <!-- Загрузить изображение -->
-            <!-- </v-tooltip> -->
+            <v-avatar
+              class="elevation-10 cursor--pointer"
+              size="90"
+            >
+              <img :src="user.avatar">
+            </v-avatar>
+
             <div class="caption mt-4">
               <a href="https://en.gravatar.com/emails" target="blank">Для смены автара измените автара на сайте Gravatar</a>
             </div>
