@@ -44,6 +44,9 @@ import RegistrationForm from './RegistrationForm';
 export default {
   name: 'LoginPage',
   components: { AuthForm, RegistrationForm },
+  created() {
+    this.isAuth = this.$route.name === 'login';
+  },
   data: vm => ({
     auth: {
       password: '',
@@ -66,11 +69,13 @@ export default {
       if (this.isAuth) {
         this.auth.password = '';
         this.auth.login = '';
+        this.$router.push('/registration');
       }
       else {
         this.register.password = '';
         this.register.nickname = '';
         this.register.email = '';
+        this.$router.push('/login');
       }
       this.isAuth = !this.isAuth;
     },
