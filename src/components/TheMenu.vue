@@ -62,7 +62,7 @@
 const menu = [
   { icon: 'account_circle', text: 'Профиль', to: '/profile' },
   { icon: 'dashboard', text: 'Дашбоард', to: '/dashboard' },
-  { icon: 'settings', text: 'Настройки', to: '/settings' },
+  // { icon: 'settings', text: 'Настройки', to: '/settings' },
 ];
 
 export default {
