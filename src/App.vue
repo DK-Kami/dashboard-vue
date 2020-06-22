@@ -8,13 +8,14 @@
       <the-menu />
       <notification />
 
-      <v-slide-y-transition>
-        <v-container fluid class="pa-0" fill-height>
-          <v-layout fill-height justify-center>
+      
+      <v-container fluid class="pa-0" fill-height>
+        <v-layout fill-height justify-center>
+          <v-slide-y-transition mode="out-in">
             <router-view />
-          </v-layout>
-        </v-container>
-      </v-slide-y-transition>
+          </v-slide-y-transition>
+        </v-layout>
+      </v-container>
     </v-content>
   </v-app>
 </template>
