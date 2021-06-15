@@ -1,56 +1,40 @@
 <template>
-  <v-form ref="form" @submit.prevent="submit" class="pa-4 pt-0">
-    <v-card-title class="headline ma-4 mt-0">
-      Регистрация
-    </v-card-title>
+  <v-form ref="form" @submit.prevent="submit" style="min-width: 300px">
 
-    <v-card-text>
-      <v-text-field
-        v-model="data.nickname"
-        :rules="[rules.min('name'), rules.required]"
-        label="Отображаемое имя"
-        validate-on-blur
-        rounded
-        filled
-      />
-      <v-text-field
-        v-model="data.email"
-        :rules="[rules.email, rules.required]"
-        label="Ваша электронная почта"
-        validate-on-blur
-        rounded
-        filled
-      />
-      <v-text-field
-        v-model="data.password"
-        :rules="[rules.required]"
-        hint="Пароль должен быть больше 8 символов"
-        type="password"
-        label="Пароль"
-        persistent-hint
-        validate-on-blur
-        rounded
-        filled
-      />
-    </v-card-text>
+    <v-text-field
+      v-model="data.nickname"
+      :rules="[rules.min('name'), rules.required]"
+      label="Display name"
+      validate-on-blur
+      filled
+    />
+    <v-text-field
+      v-model="data.email"
+      :rules="[rules.email, rules.required]"
+      label="Email"
+      validate-on-blur
+      filled
+    />
+    <v-text-field
+      v-model="data.password"
+      :rules="[rules.required]"
+      hint="Password must be more than 8 characters"
+      type="password"
+      label="Password"
+      persistent-hint
+      validate-on-blur
+      filled
+    />
 
-    <v-card-actions>
-      <v-spacer />
-      <v-btn
-        color="success"
-        class="mt-6"
-        small
-        text
-        @click="$emit('change-form')"
-      >На форму авторизации</v-btn>
+    <v-layout justify-end mt-4>
       <v-btn
         color="primary"
         type="submit"
         depressed
         outlined
         large
-      >Зарегистрироваться</v-btn>
-    </v-card-actions>
+      >Register</v-btn>
+    </v-layout>
   </v-form>
 </template>
 
