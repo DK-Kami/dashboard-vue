@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'AuthForm',
+
   props: {
     data: {
       type: Object,
@@ -39,6 +40,7 @@ export default {
     },
     rules: Object,
   },
+
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
