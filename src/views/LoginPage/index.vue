@@ -185,7 +185,7 @@ export default {
 
   .login__items  {
     background-color: $primary-color;
-    color: white;
+    color: #ffffffab;
   }
   .login__item {
     font-size: 3em;
@@ -194,7 +194,7 @@ export default {
     text-align: right;
   }
   .active__item>.login__item {
-    color: #ffffffab;
+    color: white;
   }
   .active__item>.triangle::before {
     content: "";
