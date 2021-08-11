@@ -28,29 +28,29 @@ const routes = [
     component: LoginPage,
   },
 
-  {
-    name: 'profile',
-    path: '/profile',
-    component: () => import('@/views/Profile'),
-  },
+  // {
+  //   name: 'profile',
+  //   path: '/profile',
+  //   component: () => import('@/views/Profile'),
+  // },
   {
     name: 'dashboard',
     path: '/dashboard',
     component: () => import('@/views/Dashboard'),
   },
-  {
-    name: 'settings',
-    path: '/settings',
-    component: () => import('@/views/Settings'),
-  },
-  {
-    name: 'AnonimDashboard',
-    path: '/fs/:token/:nickname',
-    meta: {
-      access: true,
-    },
-    component: () => import('@/views/AnonimDashboard'),
-  },
+  // {
+  //   name: 'settings',
+  //   path: '/settings',
+  //   component: () => import('@/views/Settings'),
+  // },
+  // {
+  //   name: 'AnonimDashboard',
+  //   path: '/fs/:token/:nickname',
+  //   meta: {
+  //     access: true,
+  //   },
+  //   component: () => import('@/views/AnonimDashboard'),
+  // },
   {
     path: '/*',
     redirect: '/dashboard',
