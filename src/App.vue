@@ -1,15 +1,11 @@
 <template>
   <div id="app">
-    <the-tool-bar/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import TheToolBar from '@cmp/TheToolBar';
-
 export default {
-  components: { TheToolBar },
   name: 'App.vue',
 };
 </script>
