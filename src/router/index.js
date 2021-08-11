@@ -1,58 +1,29 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import listners from './listners';
-import initListners from './initListners';
-import LoginPage from '@/views/LoginPage';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
 
-Vue.use(Router);
+Vue.use(VueRouter)
 
-const router = new Router({
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+  },
+  {
+    path: '/about',
+    name: 'About',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  }
+]
+
+const router = new VueRouter({
   mode: 'history',
-  routes: [
-    {
-      name: 'login',
-      path: '/login',
-      meta: {
-        access: true,
-      },
-      component: LoginPage,
-    },
-    {
-      name: 'registration',
-      path: '/registration',
-      meta: {
-        access: true,
-      },
-      component: LoginPage,
-    },
-    {
-      name: 'profile',
-      path: '/profile',
-      component: () => import('@/views/Profile'),
-    },
-    {
-      name: 'dashboard',
-      path: '/dashboard',
-      component: () => import('@/views/Dashboard'),
-    },
-    {
-      name: 'settings',
-      path: '/settings',
-      component: () => import('@/views/Settings'),
-    },
-    {
-      name: 'AnonimDashboard',
-      path: '/fs/:token/:nickname',
-      meta: {
-        access: true,
-      },
-      component: () => import('@/views/AnonimDashboard'),
-    },
-    {
-      path: '/*',
-      redirect: '/dashboard',
-    },
-  ],
-});
+  base: process.env.BASE_URL,
+  routes
+})
 
-export default initListners(router, listners);
+export default router
