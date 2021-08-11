@@ -6,6 +6,7 @@ import routerInit from './router';
 import store from './store';
 
 import mainMixin from '@/helper/mixins/main';
+import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
@@ -20,5 +21,6 @@ Vue.mixin(mainMixin);
 new Vue({
   router,
   store,
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app');
