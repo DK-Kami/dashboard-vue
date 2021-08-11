@@ -5,7 +5,8 @@
     </template>
 
     <v-content v-else fluid>
-      <the-menu />
+      <the-tool-bar />
+      <!-- <the-menu /> -->
       <notification />
 
       
@@ -21,14 +22,16 @@
 </template>
 
 <script>
-import Notification from '@/components/Notification';
-import TheMenu from '@/components/TheMenu';
+import Notification from '@cmp/Notification';
+import TheMenu from '@cmp/TheMenu';
+import TheToolBar from '@cmp/TheToolBar.vue';
 
 export default {
   name: 'App',
 
   components: {
     Notification,
+    TheToolBar,
     TheMenu,
   },
 
@@ -80,10 +83,10 @@ html {
 #app.v-application .body-2,
 #app.v-application .caption,
 #app.v-application .overline {
-  font-family: "Ubuntu", sans-serif !important;
+  font-family: "Raleway", sans-serif !important;
 }
 
 .v-application {
-  font-family: "Ubuntu", sans-serif !important;
+  font-family: "Raleway", sans-serif !important;
 }
 </style>
