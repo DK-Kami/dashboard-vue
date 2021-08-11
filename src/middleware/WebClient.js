@@ -85,5 +85,5 @@ class WebClient {
 /**
  * URL API
  */
-const url = '';
+const url = 'http://localhost:5000/';
 export default new WebClient(url);
