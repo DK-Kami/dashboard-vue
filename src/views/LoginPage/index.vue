@@ -58,39 +58,6 @@
           </v-flex>
         </v-layout>
       </v-card>
-
-      <!-- <v-flex xs4>
-        <v-card>
-          <v-slide-y-transition>
-            <v-alert
-              v-if="error"
-              color="error"
-              type="error"
-              border="top"
-              icon="error"
-              class="mb-0"
-              text
-            >{{ error }}</v-alert>
-          </v-slide-y-transition>
-
-          <v-slide-y-transition>
-            <auth-form
-              v-if="isAuth" 
-              :data.sync="auth"
-              :rules="rules"
-              @change-form="changeForm"
-              @submit="login"
-            />
-            <registration-form
-              v-else
-              :data.sync="register"
-              :rules="rules"
-              @change-form="changeForm"
-              @submit="registation"
-            />
-          </v-slide-y-transition>
-        </v-card>
-      </v-flex> -->
     </v-layout>
   </v-container>
 </template>
@@ -171,7 +138,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "../../variables/theme.scss";
+  @import "../../plugins/variables/theme.scss";
 
   .form__card {
     height: 600px;
