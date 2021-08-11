@@ -36,10 +36,21 @@ const initialState = () => ({
         case 'phone':
           return v => (v + '').length === 18 || message;
 
+        case 'name':
+          return v => v.length > 3 || 'Имя должно содержать больше символов';
+
+        case 'password':
+          return v => v.length > 8 || 'Пароль должен быть больше 8 символов';
+
         default:
           return true;
       };
     }
+  },
+
+  perPages: {
+    table: [10, 25, 50, 100],
+    card: [6, 12, 24, 36, 60]
   },
 });
 
