@@ -4,8 +4,7 @@
       <router-view />
     </template>
 
-    <v-content v-else fluid>
-      <!-- <the-tool-bar /> -->
+    <v-main v-else fluid>
       <notification />
 
       <v-container fluid class="pa-0" fill-height>
@@ -15,7 +14,7 @@
           </v-slide-y-transition>
         </v-layout>
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -27,7 +26,6 @@ export default {
 
   components: {
     Notification,
-    // TheToolBar,
   },
 
   computed: {
