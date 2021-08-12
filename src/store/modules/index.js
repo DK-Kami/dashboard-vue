@@ -1,8 +1,8 @@
-import * as notification from './notification';
-import * as statistic from './statistic'
-import * as types from './types';
-import * as user from './user';
-import * as auth from './auth';
+import notification from './notification';
+import statistic from './statistic'
+import types from './types';
+import user from './user';
+import auth from './auth';
 
 export default {
   notification,
