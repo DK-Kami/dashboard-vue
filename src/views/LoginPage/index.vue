@@ -69,7 +69,10 @@ import RegistrationForm from './RegistrationForm';
 export default {
   name: 'LoginPage',
 
-  components: { AuthForm, RegistrationForm },
+  components: {
+    RegistrationForm,
+    AuthForm,
+  },
 
   created() {
     this.isAuth = this.$route.name == 'login';

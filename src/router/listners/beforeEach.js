@@ -20,12 +20,14 @@ export default function (store) {
     }
 
     const isPing = !!(to.path === '/ping' && lastRoute);
-    const { name, meta, path } = isPing ? lastRoute : to;
-    const { access } = meta;
+		const { meta: { access }, path } = isPing ? lastRoute : to;
 
-    if ((isEmpty(lastRoute) && to.name === 'login') || to.name !== 'login') Object.assign(lastRoute, to);
+    if ((isEmpty(lastRoute) && to.name === 'login') || to.name !== 'login') {
+      Object.assign(lastRoute, to);
+    }
+    
     if (!isSigned) {
-      if (access && name) return next((isPing && path) || true);
+      if (access && to.name) return next((isPing && path) || true);
       return next('/login');
     }
     if (!to.meta.access) {
