@@ -30,20 +30,37 @@ const AuthModule = new VuexModule({
     loginFromState: ({ commit }, data) => commit('LOGIN', data),
   
     async login({ commit, dispatch }, { login, password }) {
-      const user = (await AuthService.login({ login, password }));
-      const token = user.token;
+      try {
+        const user = (await AuthService.login({ login, password }));
+        const token = user.token;
 
-      commit('LOGIN', { token, user });
-      dispatch('saveToLocaleStorage', { token, user }, { root: true });
+        commit('LOGIN', { token, user });
+        dispatch('saveToLocaleStorage', { token, user }, { root: true });
+        return { error: false };
+      }
+      catch(err) {
+        console.log(err);
+        let message = 'Произошла ошибка сервера, попробуйте позже';
+        if (err.nickname) {
+          message = 'Пользователь с таким именем уже существует';
+        }
+        if (err.email) {
+          message = 'Данный email уже используется';
+        }
+
+        return { error: true, data: message };
+      }
     },
 
-    async registration({ commit }, { password, nickname, email }) {
+    async registration(_, { password, nickname, email }) {
       try {
         const user = (await AuthService.register({password, nickname, email}));
         dispatch('notification/set', {
           message: 'Пользователь зарегистрирован',
           type: 'success',
         }, { root: true });
+
+        return { error: false };
       }
       catch(err) {
         let message = 'Произошла ошибка сервера, попробуйте позже';
@@ -56,6 +73,10 @@ const AuthModule = new VuexModule({
 
         return { error: true, data: message };
       }
+    },
+
+    logout() {
+      AuthService.logout();
     },
 
     changeProfileData({ commit }, user) {
