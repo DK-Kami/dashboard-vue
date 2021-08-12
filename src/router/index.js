@@ -12,6 +12,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    name: 'hui',
+    path: '/',
+    meta: {
+      access: true,
+    },
+    component: LoginPage,
+  },
+  {
     name: 'login',
     path: '/login',
     meta: {
@@ -58,9 +66,9 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  mode: 'history',
+  routes,
 });
 
 export default initListners(router, listners);
