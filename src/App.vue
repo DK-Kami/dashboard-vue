@@ -6,6 +6,7 @@
 
     <v-main v-else fluid>
       <notification />
+      <the-toolbar />
 
       <v-container fluid class="pa-0" fill-height>
         <v-layout fill-height justify-center>
@@ -20,12 +21,14 @@
 
 <script>
 import Notification from '@cmp/layout/Notification';
+import TheToolbar from './components/layout/TheToolbar.vue';
 
 export default {
   name: 'App',
 
   components: {
     Notification,
+    TheToolbar,
   },
 
   computed: {
