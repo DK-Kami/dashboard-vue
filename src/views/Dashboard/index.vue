@@ -1,5 +1,9 @@
 <template>
-  <v-btn @click="logout">log out</v-btn>
+  <v-layout>
+    <v-flex>
+      <v-btn @click="logout">log out</v-btn>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
