@@ -1,10 +1,10 @@
 <template>
   <v-layout fill-height>
-    <v-app-bar color="primary" dark dense>
+    <v-app-bar color="primary" dark>
       <v-layout align-content-center>
         <v-flex>
           <v-layout align-center fill-height>
-            UrFS
+            <div class="heading-1">UrFS</div>
           </v-layout>
         </v-flex>
 
@@ -16,7 +16,7 @@
               primary
               text
             >
-              <v-icon>mdi-view-dashboard-outline</v-icon>
+              <v-icon size="28">mdi-view-dashboard-outline</v-icon>
             </v-btn>
 
             <v-btn
@@ -25,7 +25,7 @@
               primary
               text
             >
-              <v-icon>mdi-account-outline</v-icon>
+              <v-icon size="28">mdi-account-outline</v-icon>
             </v-btn>
 
             <v-btn
@@ -34,7 +34,7 @@
               primary
               text
             >
-              <v-icon>mdi-cog-outline</v-icon>
+              <v-icon size="28">mdi-cog-outline</v-icon>
             </v-btn>
 
           </v-layout>
@@ -73,7 +73,7 @@ export default {
 @import "../../plugins/variables/theme.scss";
 
 .toolbar-button {
-  height: 48px !important;
+  height: 64px !important;
   border-radius: 0;
 }
 </style>
