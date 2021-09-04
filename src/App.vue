@@ -21,7 +21,7 @@
 
 <script>
 import Notification from '@cmp/layout/Notification';
-import TheToolbar from './components/layout/TheToolbar.vue';
+import TheToolbar from './components/layout/TheToolbar';
 
 export default {
   name: 'App',
