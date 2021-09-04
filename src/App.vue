@@ -8,7 +8,7 @@
       <notification />
       <the-toolbar />
 
-      <v-container fluid class="pa-0" fill-height>
+      <v-container fluid class="pt-10" fill-height>
         <v-layout fill-height justify-center>
           <v-slide-y-transition mode="out-in">
             <router-view />
