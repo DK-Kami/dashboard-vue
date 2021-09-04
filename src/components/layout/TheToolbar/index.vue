@@ -1,10 +1,12 @@
 <template>
   <v-layout fill-height>
-    <v-app-bar color="primary" dark dense>
+    <v-app-bar color="primary" dark>
       <v-layout align-content-center>
         <v-flex>
           <v-layout align-center fill-height>
-            UrFS
+            <div class="text-h5">UrFS</div>
+
+            <url-button />
           </v-layout>
         </v-flex>
 
@@ -12,20 +14,20 @@
           <v-layout justify-center>
             <v-btn
               class="toolbar-button"
-              to="/dashboard"
-              primary
-              text
-            >
-              <v-icon>mdi-view-dashboard-outline</v-icon>
-            </v-btn>
-
-            <v-btn
-              class="toolbar-button"
               to="/profile"
               primary
               text
             >
-              <v-icon>mdi-account-outline</v-icon>
+              <v-icon size="28">mdi-account-outline</v-icon>
+            </v-btn>
+            
+            <v-btn
+              class="toolbar-button"
+              to="/dashboard"
+              primary
+              text
+            >
+              <v-icon size="28">mdi-view-dashboard-outline</v-icon>
             </v-btn>
 
             <v-btn
@@ -34,7 +36,7 @@
               primary
               text
             >
-              <v-icon>mdi-cog-outline</v-icon>
+              <v-icon size="28">mdi-cog-outline</v-icon>
             </v-btn>
 
           </v-layout>
@@ -47,7 +49,7 @@
               text
               @click="logout"
             >
-              <span class="mx-3">Log out</span> <v-icon>mdi-logout-variant</v-icon>
+              <span class="mx-3 text-h6">Log out</span> <v-icon size="26">mdi-logout-variant</v-icon>
             </v-btn>
           </v-layout>
         </v-flex>
@@ -57,8 +59,14 @@
 </template>
 
 <script>
+import UrlButton from './UrlButton.vue';
+
 export default {
   name: 'TheToolbar',
+
+  components: {
+    UrlButton
+  },
 
   methods: {
     async logout() {
@@ -70,10 +78,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../plugins/variables/theme.scss";
+@import "../../../plugins/variables/theme.scss";
 
 .toolbar-button {
-  height: 48px !important;
+  height: 64px !important;
   border-radius: 0;
 }
 </style>
