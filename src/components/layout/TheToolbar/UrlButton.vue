@@ -19,7 +19,6 @@ export default {
 
   computed: {
     url() {
-      console.log(this.$store.getters['auth/getUrl']);
       return this.$store.getters['auth/getUrl'];
     },
   },
