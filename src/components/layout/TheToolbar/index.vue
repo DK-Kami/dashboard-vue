@@ -6,7 +6,9 @@
           <v-layout align-center fill-height>
             <div class="text-h5">UrFS</div>
 
-            <url-button />
+            <v-flex xs8>
+              <url-button class="ml-5 mt-2" />
+            </v-flex>
           </v-layout>
         </v-flex>
 
