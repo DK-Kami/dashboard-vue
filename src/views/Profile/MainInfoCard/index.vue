@@ -6,15 +6,21 @@
       </v-flex>
 
       <v-flex>
-        specialisations
+        <v-card-title>
+          specialisations
+        </v-card-title>
       </v-flex>
 
       <v-flex>
-        Education
+        <v-card-title>
+          Education
+        </v-card-title>
       </v-flex>
 
       <v-flex>
-        Work
+        <v-card-title>
+          Work
+        </v-card-title>
       </v-flex>
     </v-layout>
   </v-card>
