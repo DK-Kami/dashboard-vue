@@ -6,6 +6,11 @@ const routes = [
     name: 'LoginPage',
     component: () => import(/* webpackChunkName: "about" */ '@/views/LoginPage'),
   },
+  {
+    path: '/register',
+    name: 'RegisterPage',
+    component: () => import(/* webpackChunkName: "about" */ '@/views/LoginPage'),
+  },
 
   {
     path: '/:pathMatch(.*)',
