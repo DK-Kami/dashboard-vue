@@ -23,6 +23,7 @@
           <el-form
             v-if="isAuth"
             :model="authData"
+            :rules="rules"
             label-position="top"
             ref="authForm"
           >
@@ -42,6 +43,7 @@
           <el-form
             v-else
             :model="regData"
+            :rules="rules"
             label-position="top"
             ref="regForm"
           >
@@ -54,7 +56,7 @@
             </el-form-item>
 
             <el-form-item label="Repeat password" prop="repeatPassword" required>
-              <el-input v-model="regData.repeatPassword" type="repeatPassword" />
+              <el-input v-model="regData.repeatPassword" type="password" />
             </el-form-item>
 
             <el-form-item >
@@ -71,20 +73,47 @@
 export default {
   name: 'LoginPage',
 
-  data: () => ({
-    isAuth: true,
+  created() {
+    console.log(this.$store.getters['rules/getRules']);
+  },
 
-    authData: {
+  data() {
+    const authData = {
       login: '',
       password: '',
-    },
+    };
+    const passwordRule = (_, value, callback) => {
+      if (this.isAuth) return callback();
+      if (this.regData.repeatPassword) {
+        return this.$refs.regForm.validateField('repeatPassword');
+      }
+      return callback();
+    }
+    const repeatPasswordRule = (_, value, callback) => {
+      if (this.isAuth) return callback();
+      if (value !== this.regData.password) return callback(new Error('Two passwords don\'t match'));
+      return callback();
+    }
 
-    regData: {
-      login: '',
-      password: '',
-      repeatPassword: '',
-    },
-  }),
+    const rules = {
+      ...this.$store.getters['rules/getRules'],
+      password: [{ validator: passwordRule, trigger: 'blur' }],
+      repeatPassword: [{ validator: repeatPasswordRule, trigger: 'blur' }],
+    }
+    
+    return {
+      isAuth: true,
+
+      authData,
+
+      regData: {
+        ...authData,
+        repeatPassword: '',
+      },
+      
+      rules,
+    }
+  },
 
   computed: {
     isReg(){
