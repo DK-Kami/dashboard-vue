@@ -6,13 +6,13 @@
           <div
             :class="{ 'active__item' : isAuth }"
             class="selector__item"
-            @click="isAuth = true"
+            @click="changeForm('auth')"
           >Login <div class="triangle" /></div>
 
           <div
             :class="{ 'active__item' : isReg }"
             class="selector__item"
-            @click="isAuth = false"
+            @click="changeForm('register')"
           >Register <div class="triangle" /></div>
         </div>
       </el-col>
@@ -74,7 +74,11 @@ export default {
   name: 'LoginPage',
 
   created() {
-    console.log(this.$store.getters['rules/getRules']);
+    const { path } = this.$route;
+
+    if (path === '/login') this.isAuth = true;
+    else if (path === '/register') this.isAuth = false;
+    else this.router.replace({ name: 'LoginPage' });
   },
 
   data() {
@@ -119,6 +123,19 @@ export default {
     isReg(){
       return !this.isAuth;
     },
+  },
+
+  methods: {
+    changeForm(formType) {
+      if (formType === 'auth' && !this.isAuth) {
+        this.isAuth = true;
+        this.$router.push({ name: 'LoginPage' });
+      }
+      if (formType === 'register' && this.isAuth) {
+        this.isAuth = false;
+        this.$router.push({ name: 'RegisterPage' });
+      }
+    }
   },
 };
 </script>
