@@ -38,6 +38,29 @@
               <el-button>Login</el-button>
             </el-form-item>
           </el-form>
+
+          <el-form
+            v-else
+            :model="regData"
+            label-position="top"
+            ref="regForm"
+          >
+            <el-form-item label="Login" prop="login" required>
+              <el-input v-model="regData.login" />
+            </el-form-item>
+
+            <el-form-item label="Password" prop="password" required>
+              <el-input v-model="regData.password" type="password" />
+            </el-form-item>
+
+            <el-form-item label="Repeat password" prop="repeatPassword" required>
+              <el-input v-model="regData.repeatPassword" type="repeatPassword" />
+            </el-form-item>
+
+            <el-form-item >
+              <el-button>Register</el-button>
+            </el-form-item>
+          </el-form>
         </el-col>
       </el-row>
     </el-row>
@@ -54,6 +77,12 @@ export default {
     authData: {
       login: '',
       password: '',
+    },
+
+    regData: {
+      login: '',
+      password: '',
+      repeatPassword: '',
     },
   }),
 
