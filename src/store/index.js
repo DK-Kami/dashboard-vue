@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 
-import rules from './modules/rules'
+import rules from './modules/rules';
+import auth from './modules/auth';
 
 export default createStore({
   state: {
@@ -11,5 +12,6 @@ export default createStore({
   },
   modules: {
     rules,
+    auth,
   },
 });

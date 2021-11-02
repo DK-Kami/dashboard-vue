@@ -26,6 +26,7 @@
             :rules="rules"
             label-position="top"
             ref="authForm"
+            @submit.prevent="handleSubmit"
           >
             <el-form-item label="Login" prop="login" required>
               <el-input v-model="authData.login" />
@@ -35,8 +36,8 @@
               <el-input v-model="authData.password" type="password" />
             </el-form-item>
 
-            <el-form-item >
-              <el-button>Login</el-button>
+            <el-form-item>
+              <el-button @click.prevent="handleSubmit">Login</el-button>
             </el-form-item>
           </el-form>
 
@@ -63,6 +64,9 @@
               <el-button>Register</el-button>
             </el-form-item>
           </el-form>
+        </el-col>
+        <el-col v-if="errorMessage">
+          {{ errorMessage }}
         </el-col>
       </el-row>
     </el-row>
@@ -106,6 +110,7 @@ export default {
     }
     
     return {
+      errorMessage: '',
       isAuth: true,
 
       authData,
@@ -135,6 +140,18 @@ export default {
         this.isAuth = false;
         this.$router.push({ name: 'RegisterPage' });
       }
+    },
+
+    async handleSubmit() {
+      const { error, errorMessage } = await this.$store.dispatch('auth/login', {
+        password: this.authData.password,
+        login: this.authData.login,
+      });
+
+      if (error) {
+        this.errorMessage = errorMessage;
+      }
+      else this.errorMessage = '';
     }
   },
 };
